@@ -204,7 +204,7 @@ function handle_thread(thread_list) {
  */
 function handle_pub_html_list(html_dict) {
     html = ""
-    for (const t_key in html_dict) {
+    for (let t_key in html_dict) {
         if (Object.hasOwnProperty.call(html_dict, t_key)) {
             let element = object[t_key];
             html += element
