@@ -206,7 +206,7 @@ function handle_pub_html_list(html_dict) {
     html = ""
     for (let t_key in html_dict) {
         if (Object.hasOwnProperty.call(html_dict, t_key)) {
-            let element = object[t_key];
+            let element = html_dict[t_key];
             html += element
         }
     }
