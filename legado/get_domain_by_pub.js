@@ -77,7 +77,9 @@ function get_unique_domain_list(testing_host_list) {
         part_host = part_host.substring(0, part_host.indexOf("/", 9))
         if (!part_host.startsWith("http")) part_host = String(http_head + "://" + part_host)
         if (!part_host.endsWith("/")) part_host = part_host + "/"
+        java.log("part_host :" + part_host)
         if (is_exclude(part_host)) continue
+        java.log("append host :" + part_host)
         tmp_url_dic[part_host] = 1
     }
     return Object.keys(tmp_url_dic) || []
