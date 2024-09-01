@@ -8,7 +8,7 @@ request_test_match = /韩国漫画|韩漫|漫畫/
 //fby_url=""
 //fby_url=fby_url+",{'webView': true}";
 // 多发布页
-fby_url_list = ["https://jmcmomic.github.io/go/304.html", "https://stevenyomi.github.io/source-domains/jmcomic.txt", "https://jmcomicltd.xyz"];
+fby_url_list = [];
 // 域名匹配 xpath 格式规则
 xpath_relus = "//*";
 // 域名匹配 xpath 格式规则
