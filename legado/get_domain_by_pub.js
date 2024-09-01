@@ -77,9 +77,9 @@ function get_unique_domain_list(testing_host_list) {
         if (!part_host.startsWith("http")) part_host = String(http_head + "://" + part_host)
         if (!part_host.endsWith("/")) part_host = part_host + "/"
         part_host = part_host.substring(0, part_host.indexOf("/", 9))
-        java.log("part_host :" + part_host)
+        //java.log("part_host :" + part_host)
         if (is_exclude(part_host)) continue
-        java.log("append host :" + part_host)
+        //java.log("append host :" + part_host)
         tmp_url_dic[part_host] = 1
     }
     return Object.keys(tmp_url_dic) || []
@@ -98,7 +98,7 @@ function test_and_get_best_host(
     // 设置测试的 url
     let test_url_list = []
     for (let test_i = 0; test_i < test_host_list.length; test_i++) {
-        test_url_list.push(part_host + test_part_url)
+        test_url_list.push(test_host_list[i] + test_part_url)
     }
 
     // 测试服务
