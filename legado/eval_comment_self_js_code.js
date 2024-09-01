@@ -1,5 +1,5 @@
 /**
- * 执行注释的自定义的JS 
+ * 执行注释的自定义的JS  <js> xxxx  </js>
  */
 sourceComment = source.bookSourceComment;
 start_txt = "<" + "js>";
