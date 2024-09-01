@@ -98,7 +98,7 @@ function test_and_get_best_host(
     // 设置测试的 url
     let test_url_list = []
     for (let test_i = 0; test_i < test_host_list.length; test_i++) {
-        test_url_list.push(test_host_list[i] + test_part_url)
+        test_url_list.push(test_host_list[test_i] + test_part_url)
     }
 
     // 测试服务
