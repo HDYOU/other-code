@@ -74,9 +74,9 @@ function get_unique_domain_list(testing_host_list) {
     if (is_get_http_url) http_head = "https"
     for (let ipp = 0; ipp < testing_host_list.length; ipp++) {
         let part_host = String(testing_host_list[ipp])
-        part_host = part_host.substring(0, part_host.indexOf("/", 9))
         if (!part_host.startsWith("http")) part_host = String(http_head + "://" + part_host)
         if (!part_host.endsWith("/")) part_host = part_host + "/"
+        part_host = part_host.substring(0, part_host.indexOf("/", 9))
         java.log("part_host :" + part_host)
         if (is_exclude(part_host)) continue
         java.log("append host :" + part_host)
