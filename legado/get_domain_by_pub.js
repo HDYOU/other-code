@@ -120,7 +120,7 @@ function test_and_get_best_host(
 
                 //conn =java.ajax(resq_test_url);
 
-                resp = java.connect(tmp_host, {})
+                resp = java.connect(resq_test_url, {})
                 //contentType = resp.contentType()
                 statusCode = resp.code()
                 conn = resp.body();
