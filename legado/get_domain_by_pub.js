@@ -18,7 +18,8 @@ real_host_list = [];
 // 测试域名的 uri
 test_uri_path = "/";
 // 域名的不包含的 字符串
-exclude_domain_key_list = [".apk", "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "jm365", ".push", "gtag.js", ".css", "favicon.ico", "window.", "googletagmanager.com", "document.", "this."];
+exclude_domain_key_list = [".apk", "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "jm365", ".push", "gtag.js", ".css", "favicon.ico", "window.", "googletagmanager.com", "document.", "this.", "apk", ".png", ".ico", ".json", ".js", "Button.", "androidUrl"
+, "location.", ".html", ".append", "res.text", "res.ok", ".href", ".target", "button.", "url.replac", "console.log", "data.code", "JSON.", "e.preven"]
 
 // 排除的域名
 exclude_url_list = [];
