@@ -43,7 +43,7 @@ function get_multiple_chapter_pages(_data, _next_chapter_url_list) {
 
         for (let i = 0; i < all_data_list.length; i++) {
             let s_data = all_data_list[i].body();
-            get_chapter(s_data, [])
+            get_multiple_chapter_pages(s_data, [])
         }
 
     } else {
