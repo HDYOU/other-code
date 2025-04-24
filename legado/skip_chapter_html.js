@@ -32,7 +32,7 @@ function skip_check_chapter() {
     // 章节信息 list
     let info_list = []
     let has_info_list = false;
-    if (!info_relu || info_relu.length !== 0) {
+    if (!info_relu || info_relu.length != 0) {
         has_info_list = true
         if (!info_relu.match(/\/\/|@/)) {
             /// 章节详情信息直接给
@@ -53,7 +53,7 @@ function skip_check_chapter() {
      *
      * */
     function get_list_item_or_last(__list, __index) {
-        if (!__list || __list.length === 0) return ""
+        if (!__list || __list.length == 0) return ""
         let in_len = __list.length
         let s_in = __index;
         if (s_in < 0) s_in = 0
@@ -85,9 +85,9 @@ function skip_check_chapter() {
     for (let i = 0; i < len; i++) {
         tt = String(url_list[i]);
 
-        if (tt.indexOf("/") === 0) {
+        if (tt.indexOf("/") == 0) {
             tt = host + tt;
-        } else if (tt.toLowerCase().indexOf("http") === 0) {
+        } else if (tt.toLowerCase().indexOf("http") == 0) {
             //tt = tt;
         } else {
             tt = baseUrl + tt;
@@ -113,7 +113,7 @@ function skip_check_chapter() {
             let t_name = remove_no_num_chapter_name(s_t_name);
 
             //java.log(t_name)
-            if (!t_name || t_name === "") {
+            if (!t_name || t_name == "") {
                 remove_name_list.push(s_t_name);
                 remove_count++;
                 continue;
@@ -161,7 +161,7 @@ function skip_check_chapter() {
             return 0;
         }
 
-        if (end === rs_end) {
+        if (end == rs_end) {
             return end
         }
 
@@ -196,7 +196,7 @@ function skip_check_chapter() {
         count = count + 1
 
         let _t_len = _t_index_list.length
-        if (_t_len === 0) return false;
+        if (_t_len == 0) return false;
 
         let _first = _t_index_list[0];
         if (dic.hasOwnProperty(_first)) {
@@ -233,7 +233,7 @@ function skip_check_chapter() {
                 let _data = java.getString(source.ruleContent.content);
                 //java.log(_data.slice(0,20));
                 //java.log(_data)
-                let _is_f = !_data || _data === ""
+                let _is_f = !_data || _data == ""
                 //java.log(_is_f);
                 dic[tmp_index] = !_is_f;
 
@@ -291,7 +291,7 @@ function skip_check_chapter() {
         last_index = cc_list.length -1;
         last_obj = cc_list[last_index];
         tmp_info = last_obj["info"] || "";
-        if (tmp_info !== "") {
+        if (tmp_info != "") {
             var matchs = tmp_info.match(/(\d{4}[-\/]?\d{1,2}[-\/]?\d{1,2}(\s\d{1,2}:\d{1,2}:\d{1,2}[Tt]?)?)/)
             if(matchs){
                 last_obj["text"] = last_obj["text"] + "【"+matchs[1]+"】";
@@ -315,7 +315,7 @@ function remove_no_num_chapter_name(__txt) {
 
     if (!is_check_chapter_name) return __txt;
 
-    if (!__txt || __txt === "") return __txt;
+    if (!__txt || __txt == "") return __txt;
     if (__txt.match(/[前序绪叙引]言|楔子|序/)) return __txt;
 
     m = __txt.match(/^([^\d〇零二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第章番外])+$|.*520快乐.*/)
