@@ -295,11 +295,11 @@ function skip_check_chapter() {
             var matchs = tmp_info.match(/(\d{4}[-\/]?\d{1,2}[-\/]?\d{1,2}(\s\d{1,2}:\d{1,2}:\d{1,2}[Tt]?)?)/)
             if(matchs){
                 last_obj["text"] = last_obj["text"] + "【"+matchs[1]+"】";
-                cc_list[last_index] = last_obj;   
+                cc_list[last_index] = last_obj;
             }
         }
     }
-    
+
     java.setContent(base_src);
     return cc_list;
 
