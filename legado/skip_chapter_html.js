@@ -5,7 +5,7 @@ text_relu = "a@text";                   // 章节名规则
 url_relu = "a@href";                    // 章节url规则
 info_relu = ""                          // 章节信息规则
 check_len = 50;                         // 检测长度
-is_skip_check_len_sort = true;          // 是否跳过章节检测，当目录长度小于检测长度
+is_skip_check_len_sort = false;          // 是否跳过章节检测，当目录长度小于检测长度
 is_last_chapter_add_time = true;        // 是否最后一章名加时间信息
 
 // 移除非章节
