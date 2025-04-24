@@ -50,7 +50,7 @@ function get_multiple_chapter_pages(_data, _next_chapter_url_list) {
         let s_data = String(all_data_list[0]);
         java.setContent(s_data)
         let s_next_chapter_url_list = java.getStringList(next_chapter_url_rule);
-        get_chapter(s_data, s_next_chapter_url_list)
+        get_multiple_chapter_pages(s_data, s_next_chapter_url_list)
     }
     return rs;
 }
