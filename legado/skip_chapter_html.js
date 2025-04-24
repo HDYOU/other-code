@@ -1,11 +1,12 @@
 //java.log(result)
 ////////////// ------------- 可以定义的变量 -------------
-skip_chapter = true;            // 是否跳过章节
-text_relu = "a@text";           // 章节名规则
-url_relu = "a@href";            // 章节url规则
-info_relu = ""                  // 章节信息规则
-check_len = 50;                 // 检测长度
-is_skip_check_len_sort = true;  // 是否跳过章节检测，当目录长度小于检测长度
+skip_chapter = true;                    // 是否跳过章节
+text_relu = "a@text";                   // 章节名规则
+url_relu = "a@href";                    // 章节url规则
+info_relu = ""                          // 章节信息规则
+check_len = 50;                         // 检测长度
+is_skip_check_len_sort = true;          // 是否跳过章节检测，当目录长度小于检测长度
+is_last_chapter_add_time = true;        // 是否最后一章名加时间信息
 
 // 移除非章节
 is_check_chapter_name = true;   // 是否移除非章节
@@ -284,6 +285,21 @@ function skip_check_chapter() {
         //JSON.stringify()
         cc_list.push(obj)
     }
+    
+    /// 最后一章加时间
+    if (is_last_chapter_add_time && cc_list.length > 0) {
+        last_index = cc_list.length -1;
+        last_obj = cc_list[last_index];
+        tmp_info = last_obj["info"] || "";
+        if (tmp_info !== "") {
+            var matchs = tmp_info.match(/(\d{4}[-\/]?\d{1,2}[-\/]?\d{1,2}(\s\d{1,2}:\d{1,2}:\d{1,2}[Tt]?)?)/)
+            if(matchs){
+                last_obj["text"] = last_obj["text"] + "【"+matchs[1]+"】";
+                cc_list[last_index] = last_obj;   
+            }
+        }
+    }
+    
     java.setContent(base_src);
     return cc_list;
 
