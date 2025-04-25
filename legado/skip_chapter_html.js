@@ -203,4 +203,154 @@ function skip_check_chapter() {
 
         count = count + 1
 
-  
+        let _t_len = _t_index_list.length
+        if (_t_len == 0) return false;
+
+        let _first = _t_index_list[0];
+        if (dic.hasOwnProperty(_first)) {
+            return dic[_first];
+        }
+
+        let _url_list = [];
+        let _new_index_list = [];
+        for (let _y = 0; _y < _t_len; _y++) {
+            let tmp_index = _t_index_list[_y]
+            if (dic.hasOwnProperty(tmp_index)) {
+                continue;
+            }
+            _new_index_list.push(tmp_index)
+            _url_list.push(getImageUrl(tmp_index))
+        }
+
+        //java.log(JSON.stringify(_t_index_list))
+        //java.log(JSON.stringify(_url_list))
+        let resq_list = java.ajaxAll(_url_list);
+
+        for (let resii = 0; resii < resq_list.length; resii++) {
+            let tmp_index = _new_index_list[resii];
+            try {
+
+                let resq = resq_list[resii]
+                if (!resq) {
+                    dic[tmp_index] = false;
+                    continue;
+                }
+                let __html = resq.body();
+                java.setContent(__html);
+
+                let _data = java.getString(source.ruleContent.content);
+                //java.log(_data.slice(0,20));
+                //java.log(_data)
+                let _is_f = !_data || _data == ""
+                //java.log(_is_f);
+                dic[tmp_index] = !_is_f;
+
+            } catch (e) {
+                java.log(e.message)
+                dic[tmp_index] = false;
+
+            }
+
+
+        }
+
+        return dic[_first] || false;
+
+
+    }
+
+    let find_index = url_list.length - 1;
+    if (skip_chapter) {
+        let real_check_len = check_len > url_list.length ? url_list.length : check_len;
+        let find_start_index = url_list.length - check_len - 1;
+        find_start_index = find_start_index > 0 ? find_start_index : 0;
+        let start_time = new Date().getTime()
+        find_index = find(find_start_index, real_check_len-1)
+        let end_time = new Date().getTime()
+        
+        //count=count<0?0:count;
+        
+        skip_count=(url_list.length - find_index - 1)
+        flag= skip_count > 0
+        if(flag){
+        java.log(`
+        章节过滤:
+         时间:\t ${(end_time - start_time)} ms
+         查找: ${count} 次
+         跳过: ${(skip_count)} 章
+         查找最后索引: ${find_index+1}
+         查找最后章节: ${name_list[find_index]} \t ${url_list[find_index]}
+         `
+        )
+        }
+        
+        //java.log(JSON.stringify(name_list))
+        //java.log(JSON.stringify(url_list))
+
+    }
+
+    // source.getVariable()
+
+    let cc_list = []
+    let _start_index = 0
+    for (i = _start_index; i <= find_index; i++) {
+        let name = name_list[i];
+        let url = url_list[i];
+        let obj = {
+            "text": name, "href": url
+        };
+        if (has_info_list) {
+            obj["info"] = get_info(i)
+        }
+        //JSON.stringify()
+        cc_list.push(obj)
+    }
+    
+    /// 最后一章加时间
+    if (is_last_chapter_add_time && cc_list.length > 0) {
+        last_index = cc_list.length -1;
+        last_obj = cc_list[last_index];
+        tmp_info = last_obj["info"] || "";
+        if (tmp_info != "") {
+            var matchs = tmp_info.match(/(\d{4}[-\/]?\d{1,2}[-\/]?\d{1,2}(\s\d{1,2}:\d{1,2}:\d{1,2}[Tt]?)?)/)
+            if(matchs){
+                last_obj["text"] = last_obj["text"] + "【"+matchs[1]+"】";
+                cc_list[last_index] = last_obj;
+            }
+        }
+    }
+
+    java.setContent(base_src);
+    return cc_list;
+
+}
+
+
+/**
+ * 移除非章节
+ * @param __txt 章节名
+ * @returns {*|string} 字符串 格式化的章节名
+ */
+function remove_no_num_chapter_name(__txt) {
+
+    if (!is_check_chapter_name) return __txt;
+
+    if (!__txt || __txt == "") return __txt;
+    if (__txt.match(/[前序绪叙引]言|楔子|序/)) return __txt;
+
+    m = __txt.match(/^([^\d〇零二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第章番外])+$|.*520快乐.*/)
+
+    if (m) {
+        //java.log(JSON.stringify(m))
+        return "";
+    }
+
+    if (__txt.match(/^([\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟])+更.*|^晚一会.*/)) {
+        g = 1
+        return "";
+    }
+    //java.log(JSON.stringify(__txt))
+    __txt = String(__txt).replace(/正文卷.|正文.|VIP卷.|默认卷.|卷_|VIP章节.|免费章节.|章节目录.|最新章节.|[(（【][\D]*?[求更票谢乐发订合补加架字修Kk].*?[】）)]|[(（]精校[）)]/, "");
+    //java.log(JSON.stringify(__txt))
+    return __txt;
+}
