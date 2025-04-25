@@ -5,7 +5,7 @@
 function validate_chapter_content() {
     let txt = String(result)
     txt = txt.replace(/亲,点击进去,给个好[^\n<>]*漂亮的老婆哦!|手机站全新改版[^\n<>]*广告清新阅读！|最新网址[^\n<>]*|[(（]?本章完[)）]?|推荐.*新书[^\n<>]*|手机用户[^\n<>]*阅读体验。/g,"")
-    if (txt.match(/正在(手打|获取)中/)) {
+    if (txt.match(/正在(手打|获取|更新)中/)) {
         return ""
     }
     // 中文字符数统计
