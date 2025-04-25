@@ -52,12 +52,12 @@ function fix_chapter_url() {
     }
 
     function set_chapter_url(_url_find_list, _find_rule) {
-        _keys = Object.keys(next_chapter_url_find_list)
+        _keys = Object.keys(_url_find_list)
         if (_keys.length == 0) {
             return ;
         }
 
-        _values = Object.values(next_chapter_url_find_list)
+        _values = Object.values(_url_find_list)
         //java.log(JSON.stringify(_values))
         _url_list = []
         for (let i = 0; i < _values.length; i++) {
