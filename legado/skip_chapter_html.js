@@ -265,7 +265,7 @@ function skip_check_chapter() {
         let find_start_index = url_list.length - check_len - 1;
         find_start_index = find_start_index > 0 ? find_start_index : 0;
         let start_time = new Date().getTime()
-        find_index = find(find_start_index, real_check_len-1)
+        find_index = find(find_start_index, real_check_len)
         let end_time = new Date().getTime()
         
         //count=count<0?0:count;
