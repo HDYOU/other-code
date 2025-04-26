@@ -21,6 +21,21 @@ test_uri_path = "/";
 exclude_domain_key_list = [".apk", "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "jm365", ".push", "gtag.js", ".css", "favicon.ico", "window.", "googletagmanager.com", "document.", "this.", "apk", ".png", ".ico", ".json", ".js", "Button.", "androidUrl"
 , "location.", ".html", ".append", "res.text", "res.ok", ".href", ".target", "button.", "url.replac", "console.log", "data.code", "JSON.", "e.preven"]
 
+// html 排除的域名
+exclude_html_key_list=[".push", "favicon.ico", "window.", "document.", "this.", "Button.", "androidUrl"
+
+, "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "router.parklogic.com"
+
+, ".html", ".js", ".css", ".ico", ".png", ".jpg", ".json", ".webo", ".jpeg", ".apk", ".exe", ".zip", ".rar", ".gz", ".tar"
+
+, "location.", ".append", "res.text", "res.ok", ".href", ".target", "button.", "url.replac", "console.log", "data.code", "JSON.", "e.preven"
+, "console.", "location.", ".hasOwn", "Math.", ".forEac", ".append", ".toggle", ".style", ".setAtt", ".getAtt", ".null", ".getP", ".remove", 
+, "toLowe", "JSON", "parameters", "navigator"
+,"java","okhttp","android","legado","SSLInputStream",".css",".js",".length", "window." , ".ico", ".push" , "document." , "Container." , ".png", ".jpg", ".webp", ".html"
+,".zeroP", ".send", ".open", ".onread", ".reques", ".info.vendor", ".Date", ".maxL", ".zeroP", ".vendor", ".loopD"
+,"c.quick", "p.test", "https://t.info"
+]
+
 // 排除的域名
 exclude_url_list = [];
 
@@ -35,6 +50,7 @@ function get_http_url(txt) {
     return __url_list || []
 }
 
+real_exclude_domain_key_list=[]
 /**
  * 域名是否排除
  */
@@ -44,9 +60,23 @@ function is_exclude(part_host) {
     var patt = /^(http[s]?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}[\/]?$/i;
 
     if (!patt.test(part_host)) return true
+    
+    if(real_exclude_domain_key_list.length <1){
+      s_dic={}
+      function _set_key_dic_exclude(_domain_key_list) {
+        for (let _ii = 0; _ii < _domain_key_list.length; _ii++) {
+          let ext = _domain_key_list[_ii]
+          s_dic[ext]=""
+          }
+     
+       }
+       _set_key_dic_exclude(exclude_domain_key_list)
+       _set_key_dic_exclude(exclude_html_key_list)
+      real_exclude_domain_key_list=Object.keys(s_dic) || []
+    }
 
-    for (let _ii = 0; _ii < exclude_domain_key_list.length; _ii++) {
-        let ext = exclude_domain_key_list[_ii]
+    for (let _ii = 0; _ii < real_exclude_domain_key_list.length; _ii++) {
+        let ext = real_exclude_domain_key_list[_ii]
         if (part_host.indexOf(ext) > -1) {
             return true
         }
