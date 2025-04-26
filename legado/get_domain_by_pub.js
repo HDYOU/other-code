@@ -325,6 +325,9 @@ function get_domain() {
                     let s_time = new Date().getTime();
                     conn = java.ajax(resq_test_url);
                     //if (conn) html += conn
+                    if(conn.match(/Exception:/)){
+                      conn=""
+                    }
                     html_dict[resq_test_url] = conn
                     let e_time = new Date().getTime();
                     let _time = e_time - s_time;
