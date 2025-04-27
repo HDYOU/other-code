@@ -164,7 +164,7 @@ function test_and_get_best_host(
                     throw ("conn empty!")
                 }
 
-                java.log(tmp_host + "\t" + conn.slice(0, 100))
+                //java.log(tmp_host + "\t" + conn.slice(0, 100))
 
                 // 内容验证
                 test_match_flag = request_test_match
@@ -182,7 +182,7 @@ function test_and_get_best_host(
             } catch (e) {
                 tt = 1
                 req_time_dic[tmp_host] = bed_time;
-                java.log(tmp_host + "\t" + e.message)
+                java.log(tmp_host + "\t" + String(e).substring(0,100))
             }
         });
 
@@ -193,15 +193,18 @@ function test_and_get_best_host(
     handle_thread(thread_list);
 
 
-    java.log("\n\n域名测试服务结束.\n")
+    
+    ss_txt="\n\n域名测试服务结束.\n\t\t 时间 \t\t\t\t  域名 \n"
     for (let tmp_host in req_time_dic) {
         let _time = req_time_dic[tmp_host]
-        java.log("time: " + _time + "ms\t host: " + tmp_host)
+        ss_txt=ss_txt+`\t\t${_time == bed_time? -1:_time} ms \t${tmp_host}\n`
         if (_time < cur_time && _time > 100) {
             cur_time = _time
             host = tmp_host
         }
     }
+    
+    java.log(ss_txt)
 
     if (host && host != "") {
         java.log("the best host: " + host + "\t cos time: " + cur_time + "ms")
@@ -243,9 +246,10 @@ function handle_pub_html_list(html_dict) {
             html += element
         }
     }
-    java.log(html)
-    doc = org.seimicrawler.xpath.JXDocument.create(html)
-    nodes = doc.selN(xpath_relus);
+    //java.log(html)
+    doc=org.jsoup.Jsoup.parse(html)
+    //doc = Packages.org.seimicrawler.xpath.JXDocument.create(doc)
+    nodes = doc.select("html");
     len = nodes.length
 
     tmp_url_dic = {}
@@ -292,14 +296,15 @@ function get_domain() {
             let t_timestamp = hosts_dict["timestamp"];
             let cur_time = new Date().getTime();
             let __end_time = cur_time - allow_day * 24 * 60 * 60 * 1000
-            java.log(__end_time + "<" + t_timestamp)
+            t_flag=__end_time < t_timestamp;
             // 过期
-            if (__end_time < t_timestamp) {
+            if (t_flag) {
                 base_host = hosts_dict[base_host_key];
                 java.put(base_host_key, base_host)
 
                 return base_host;
             }
+            java.log("缓存已经过期，重新获取域名 ...")
         }
     }
 
@@ -331,10 +336,10 @@ function get_domain() {
                     html_dict[resq_test_url] = conn
                     let e_time = new Date().getTime();
                     let _time = e_time - s_time;
-                    java.log("time: " + _time + "\t host: " + resq_test_url)
+                    java.log("time: \t" + _time + " ms \t host: " + resq_test_url)
                 } catch (e) {
                     tt = 1
-                    java.log(resq_test_url + "\t" + e.message)
+                    java.log(resq_test_url + "\t" + String(e).substring(0,100))
 
                 }
             });
@@ -350,8 +355,9 @@ function get_domain() {
 
 
     url_list = get_url_list();
-
-    java.log(JSON.stringify(url_list))
+    
+    // 查找可能的域名
+    //java.log(JSON.stringify(url_list))
 
     domain_host = test_and_get_best_host(url_list, test_uri_path);
 
