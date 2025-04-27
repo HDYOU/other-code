@@ -314,7 +314,8 @@ function skip_check_chapter() {
         if (tmp_info != "") {
             var matchs = tmp_info.match(/(\d{4}[-\/]?\d{1,2}[-\/]?\d{1,2}(\s\d{1,2}:\d{1,2}:\d{1,2}[Tt]?)?)/)
             if(matchs){
-                last_obj["text"] = last_obj["text"] + "【"+matchs[1]+"】";
+                ext_txt="【"+matchs[1]+"】"
+                if (last_obj["text"].indexOf(ext_txt) <0) last_obj["text"] = last_obj["text"] + ext_txt;
                 cc_list[last_index] = last_obj;
             }
         }
