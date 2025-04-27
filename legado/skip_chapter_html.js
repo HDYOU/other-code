@@ -34,7 +34,7 @@ function skip_check_chapter() {
     let has_info_list = false;
     if (!info_relu || info_relu.length != 0) {
         has_info_list = true
-        if (!info_relu.match(/\/\/|@|$\./)) {
+        if (!info_relu.match(/\/\/|@|\$\./)) {
             /// 章节详情信息直接给
             info_list = [info_relu];
         } else {
