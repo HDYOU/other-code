@@ -9,6 +9,7 @@ indexOf = indexOf > 0 ? indexOf : baseUrl.length;
 let host = baseUrl.substring(0, indexOf);
 
 let all_chapter_url_dic = {};
+all_chapter_url_dic[baseUrl]="";
 
 /**
  *  分页目录获取
