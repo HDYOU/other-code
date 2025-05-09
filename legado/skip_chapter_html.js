@@ -10,6 +10,10 @@ is_last_chapter_add_time = true;        // 是否最后一章名加时间信息
 
 // 移除非章节
 is_check_chapter_name = true;   // 是否移除非章节
+
+// 自定义章节名过来正则
+chapter_name_filter_regex=/.*请假.*|.*请.{0,3}天假.*|.*更新时间.*|.*被审[核]?了.*|.*晚点再发一章.*|.*月份中奖名单|.*月份抽奖名单|.*被屏蔽[了]?$|.*更新在.*点$|^今天.*更新$|.*晚.{0,3}更新.*|^单章通知$|^通知$|^紧急通知.*|.*[解放]出来了$/
+
 ////////////// --------------------------
 
 /**
@@ -106,16 +110,26 @@ function skip_check_chapter() {
         let remove_count = 0;
         let remove_name_list = [];
         let new_info_list = []
+        let self_remove_name_list = [];
+        let self_remove_count = 0;
         for (let i = 0; i < len; i++) {
             let s_t_name = String(name_list[i]);
             let t_url = url_list[i];
 
             let t_name = remove_no_num_chapter_name(s_t_name);
+            
 
             //java.log(t_name)
             if (!t_name || t_name == "") {
                 remove_name_list.push(s_t_name);
                 remove_count++;
+                continue;
+            }
+            
+            if(chapter_name_filter(t_name))
+            {
+                self_remove_name_list.push(s_t_name);
+                self_remove_count++;
                 continue;
             }
 
@@ -134,6 +148,10 @@ function skip_check_chapter() {
         java.log(`
         移除 可能非章节: ${(remove_count)} 章
         章节名: ${(JSON.stringify(remove_name_list))}
+        `);
+        java.log(`
+        自定义过滤章节: ${(self_remove_count)} 章
+        章节名: ${(JSON.stringify(self_remove_name_list))}
         `);
         }
         
@@ -355,3 +373,23 @@ function remove_no_num_chapter_name(__txt) {
     //java.log(JSON.stringify(__txt))
     return __txt;
 }
+
+/**
+ * 自定义过滤章节名
+ * @param __txt 章节名
+ * @returns {*|bool} 字符串 格式化的章节名
+ */
+function chapter_name_filter(__txt) {
+
+    if (!is_check_chapter_name) return false;
+
+    if (!__txt || __txt == "") return true;
+
+    if (__txt.match(chapter_name_filter_regex)) {
+        g = 1
+        return true;
+    }
+    
+    return false;
+}
+
