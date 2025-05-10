@@ -28,7 +28,7 @@ function fix_add_chapter() {
     // 最大补章数目
     max_add_chapter_num = 5;
     pre_index = get_chapter_name_index(first_item_name);
-    java.log(`pre_index ${pre_index}`);
+    //java.log(`pre_index ${pre_index}`);
     if (pre_index < 0) return rs_list;
     new_list.push(item);
     fix_list = [];
@@ -39,14 +39,25 @@ function fix_add_chapter() {
     chapter_dic[pre_index] = item;
     // 错误章节索引长度
     error_chapter_index_len = 10;
+    // 多卷
+    volume_num=0;
     for (var i = 1; i < rs_list.length; i++) {
         item = rs_list[i];
         name = item.text;
         chapter_index = get_chapter_name_index(name);
         item.chapter_index = chapter_index
-        s_index = chapter_index;
-        flag = (s_index - pre_index) > error_chapter_index_len
-        if (s_index == -1 || flag) {
+        // 
+        if(chapter_index ==1){
+         volume_num+=100000
+        }
+        s_index = volume_num+chapter_index;
+        //java.log(`
+        //        s_index: ${(s_index)} 章
+        //        pre_index: ${pre_index}
+        //        `)
+        flag = Math.abs(s_index - pre_index) > error_chapter_index_len;
+        
+        if (s_index == -1 || chapter_index == 0 || flag) {
             s_index = pre_index + 0.01;
         }
         pre_index = s_index;
@@ -61,7 +72,7 @@ function fix_add_chapter() {
     // 过滤重复章节
     filter_repeat_chapter = true;
     chapter_name_dict = {};
-    chapter_name_dict[item.text] = "";
+    chapter_name_dict[first_item_name] = "";
     repeat_chapter_list = [];
 
     for (var i = 1; i < chapter_index_list.length; i++) {
@@ -104,13 +115,13 @@ function fix_add_chapter() {
 
         new_list.push(item);
     }
-    if (fix_list.length >= 0) {
+    if (fix_list.length > 0) {
         java.log(`
                 补充缺失章节: ${(fix_list.length)} 章
                 章节名: ${JSON.stringify(fix_list)}
                 `)
     }
-    if (repeat_chapter_list.length >= 0) {
+    if (repeat_chapter_list.length > 0) {
         java.log(`
                 重复章节: ${(repeat_chapter_list.length)} 章
                 重复章节名: ${JSON.stringify(repeat_chapter_list)}
