@@ -44,7 +44,7 @@ function fix_add_chapter() {
         name = item.text;
         chapter_index = get_chapter_name_index(name);
         item.chapter_index = chapter_index
-        s_index = cur_index;
+        s_index = chapter_index;
         flag = (s_index - pre_index) > error_chapter_index_len
         if (s_index == -1 || flag) {
             s_index = pre_index + 0.01;
