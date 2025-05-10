@@ -16,6 +16,23 @@ chapter_name_filter_regex=/.*请假.*|.*请.{0,3}天假.*|.*更新时间.*|.*被
 
 ////////////// --------------------------
 
+function reverse_list(myArray){
+ var temp;
+
+for (var i = 0; i < myArray.length / 2; i++) {
+
+    temp = myArray[i];
+
+    myArray[i] = myArray[myArray.length - 1 - i];
+
+    myArray[myArray.length - 1 - i] = temp;
+
+}
+
+return myArray
+
+}
+
 /**
  * 跳过章节主函数
  * @returns {[]|*}
@@ -27,15 +44,33 @@ function skip_check_chapter() {
     java.setContent(text);
 
     // 章节名 list
+    text_relu_reverse=false;
+    if(text_relu.indexOf("-") == 0){
+      text_relu=text_relu.substring(1)
+      text_relu_resever=true;
+    }
     let name_list = java.getStringList(text_relu);
+    if(text_relu_resever) name_list=reverse_list(name_list)
     // java.log(JSON.stringify(name_list))
 
     // 章节url list
+    url_relu_reverse=false;
+    if(url_relu.indexOf("-") == 0){
+      url_relu=url_relu.substring(1)
+      url_relu_resever=true;
+    }
     let url_list = java.getStringList(url_relu);
+    if(url_relu_reverse) url_list=reverse_list(url_list)
+    //java.log(JSON.stringify(url_list))
 
     // 章节信息 list
     let info_list = []
     let has_info_list = false;
+    info_relu_reverse=false;
+    if(info_relu.indexOf("-") == 0){
+      info_relu=info_relu.substring(1)
+      info_relu_resever=true;
+    }
     if (!info_relu || info_relu.length != 0) {
         has_info_list = true
         if (!info_relu.match(/\/\/|@|\$\./)) {
@@ -48,6 +83,7 @@ function skip_check_chapter() {
                 has_info_list = false;
             }
         }
+      if(info_relu_reverse) info_list=reverse_list(info_list)
     }
 
     java.setContent(base_src);
@@ -149,6 +185,8 @@ function skip_check_chapter() {
         移除 可能非章节: ${(remove_count)} 章
         章节名: ${(JSON.stringify(remove_name_list))}
         `);
+        }
+        if(self_remove_count > 0){
         java.log(`
         自定义过滤章节: ${(self_remove_count)} 章
         章节名: ${(JSON.stringify(self_remove_name_list))}
