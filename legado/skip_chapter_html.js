@@ -12,7 +12,7 @@ is_last_chapter_add_time = true;        // 是否最后一章名加时间信息
 is_check_chapter_name = true;   // 是否移除非章节
 
 // 自定义章节名过来正则
-chapter_name_filter_regex=/.*请假.*|.*请.{0,3}天假.*|.*更新时间.*|.*被审[核]?了.*|.*晚点再发一章.*|.*月份中奖名单|.*月份抽奖名单|.*被屏蔽[了]?$|.*更新在.*点$|^今天.*更新$|.*晚.{0,3}更新.*|^单章通知$|^通知$|^紧急通知.*|.*[解放]出来了$|^我.*|^昨天.*|^修好了.*|请个假|刷新.?下|章节审核|^明.?看吧|^嗯.*|^上章修了|部分重写|^用马甲开了一本|开了一本|^[^第]*是单章|^[^第]*感谢大家的|^[^第]*月票|^[^第]*快乐/
+chapter_name_filter_regex=/^[^第]*请假.*|^[^第]*请.{0,3}天假.*|^[^第]*更新时间.*|.*被审[核]?了.*|^[^第]*晚点再发一章.*|^[^第]*月份中奖名单|^[^第]*月份抽奖名单|^[^第]*被屏蔽[了]?$|^[^第]*更新在.*点$|^今天.*更新.*|^[^第]*晚.{0,3}更新.*|^单章通知$|^通知$|^紧急通知.*|^[^第]*[解放]出来了$|^我.*|^昨天.*|^修好了.*|^[^第]*请个假|^[^第]*刷新.?下|章节审核|^明.?看吧|^嗯.*|^上章修了|部分重写|^用马甲开了一本|开了一本|^[^第]*是单章|^[^第]*感谢大家的|^[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟]*月票|^[^第]*快乐|^万分歉意的假条|^\d+月.*|最新章审核了|^晚一会.*|^[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟]*一天.*|^[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第前言]+.*/
 
 ////////////// --------------------------
 
@@ -274,8 +274,16 @@ function skip_check_chapter() {
             if (dic.hasOwnProperty(tmp_index)) {
                 continue;
             }
+            // 使用缓存
+            tmp_url=getImageUrl(tmp_index)
+            s_cache=cache.getFromMemory(tmp_url);
+            if(s_cache != null){
+              //java.log(`${s_cache}  ${tmp_url}`)
+              dic[tmp_index] = s_cache == true;
+              continue;
+            }
             _new_index_list.push(tmp_index)
-            _url_list.push(getImageUrl(tmp_index))
+            _url_list.push(tmp_url)
         }
 
         //java.log(JSON.stringify(_t_index_list))
@@ -300,7 +308,7 @@ function skip_check_chapter() {
                 let _is_f = !_data || _data == ""
                 //java.log(_is_f);
                 dic[tmp_index] = !_is_f;
-
+                cache.putMemory(_url_list[resii], dic[tmp_index]);
             } catch (e) {
                 java.log(e.message)
                 dic[tmp_index] = false;
@@ -394,13 +402,14 @@ function remove_no_num_chapter_name(__txt) {
        .replace(/正文卷.|正文.|VIP卷.|默认卷.|卷_|VIP章节.|免费章节.|章节目录.|最新章节.|[(（【].*?[求更票谢乐发订合补加架字修Kk].*?[】）)]|[(（]精校[）)]/, "")
        .replace(/^\d+\.第\s*([\d〇零二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟]+)\s*章/,"第$1章")
        .replace(/^\d+\.番外/,"番外")
+       .replace(/[(（【].*?求月票.*?[】）)]/,"")
 
     if (!is_check_chapter_name) return __txt;
 
     if (!__txt || __txt == "") return __txt;
     if (__txt.match(/[前序绪叙引]言|楔子|序/)) return __txt;
 
-    m = __txt.match(/^([^\d〇零二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第章番外])+$|.*520快乐.*/)
+    m = __txt.match(/^([^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第章番外])+$|.*520快乐.*/)
 
     if (m) {
         //java.log(JSON.stringify(m))
