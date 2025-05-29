@@ -108,7 +108,7 @@ function getHost() {
 /**
  * 检查IP并获取可用主机
  */
-function creatRequest(urlPath, params, method="GET", body) {
+function creatRequest(urlPath, params, method="GET", body, charset) {
     const ctx = this;
     const { source, java, cache } = ctx;
     
@@ -144,6 +144,7 @@ function creatRequest(urlPath, params, method="GET", body) {
             method: method
         };
         if (body && body != "" ) option.body = body;
+        if (charset && charset != "" ) option.charset = charset;
         params = params ? params+"&" : "?";
         return `${cache.get(
             cache_host_key
@@ -194,6 +195,11 @@ function clearCache() {
 
 const ctx = this;
     const { source, java, cache } = ctx;
+    
+    clearCacheWith(cache)
+}
+
+function clearCacheWith(cache) {
     
         var cache_ck_key="croxy ck"+source.key;
         var cache_time_key="croxy time"+source.key;
