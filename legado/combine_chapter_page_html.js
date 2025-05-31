@@ -65,7 +65,7 @@ function get_multiple_chapter_pages(_data, _next_chapter_url_list) {
        break
       }
       if(s_retry_time > 0){
-        java.longToast(`${book.name} 获取目录出错, ${sleep_time/1000秒后重试`)
+        java.longToast(`${book.name} 获取目录出错, ${sleep_time/1000}秒后重试`)
         Packages.java.lang.Thread.sleep(sleep_time);
      }
     }
