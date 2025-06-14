@@ -95,7 +95,37 @@ function get_multiple_chapter_pages(_data, _next_chapter_url_list) {
 function ajax_cache_html_key(_url){
  return `html_${_url}`
 }
+
+// 分页缓存 解决异常情况
 function ajax_all(_url_list){
+ let s_len=20
+ let ss_list=[]
+ 
+ back_is_cache_first=is_cache_first
+ back_is_cache_last=is_cache_last
+
+ for(var i=0;i<_url_list.length;){
+      next_i=i+s_len;
+      if(i!=0){
+        is_cache_first=true
+      }
+      if( next_i >=_url_list.length){
+        is_cache_last=back_is_cache_last
+      } else {
+        is_cache_last=true
+      }
+      s_url_list=_url_list.slice(i,next_i);
+      i=next_i;
+      tmp_list=ajax_all_inner(s_url_list)
+      tmp_list.forEach( (item)=> ss_list.push(item))
+    }
+ 
+ is_cache_first=back_is_cache_first
+ is_cache_last=back_is_cache_last
+  return ss_list;
+}
+
+function ajax_all_inner(_url_list){
   let new_url_list=[]
   let tmp_resp_dic={}
   for(var i=0;i<_url_list.length;i++){
