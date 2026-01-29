@@ -60,8 +60,25 @@ function skip_check_chapter() {
       url_relu_reverse=true;
     }
     let url_list = java.getStringList(url_relu);
+    
+    if(name_list.length > url_list.length){
+      if(url_relu.indexOf("@") > 0){
+      java.log("修复获取目录链接")
+      var tmp_list=String(result).match(/href=['"][^>]+['"]/g);
+      var tmp_txt=JSON.stringify(tmp_list);
+      //java.log(tmp_txt);
+      tmp_txt=tmp_txt.replace(/href=\\['"]|\\['"]/ig,"");
+      var new_tmp_list=JSON.parse(tmp_txt);
+      //java.log(new_tmp_list.length);
+      //java.log(JSON.stringify(new_tmp_list))
+      
+      url_list=new_tmp_list;
+      }
+    }
     if(url_relu_reverse) url_list=reverse_list(url_list)
-    //java.log(JSON.stringify(url_list))
+    //java.log(JSON.stringify(name_list))
+    //java.log("\nname len :" +name_list.length +" \nurl  len:" +url_list.length)
+    //java.log(JSON.stringify(String(result).match(/href=[^>]+/g).length))
 
     // 章节信息 list
     let info_list = []
@@ -136,6 +153,7 @@ function skip_check_chapter() {
     }
 
     //	java.log(JSON.stringify(url_list))
+    //java.log("\nname len :" +name_list.length +" \nurl  len:" +url_list.length)
 
     //  // 移除非章节
     if (is_check_chapter_name) {
@@ -282,8 +300,11 @@ function skip_check_chapter() {
               dic[tmp_index] = s_cache == true;
               continue;
             }
-            _new_index_list.push(tmp_index)
-            _url_list.push(tmp_url)
+            if(tmp_url){
+              _new_index_list.push(tmp_index)
+              _url_list.push(tmp_url)
+            }
+            
         }
 
         //java.log(JSON.stringify(_t_index_list))
