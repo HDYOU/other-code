@@ -64,7 +64,7 @@ function skip_check_chapter() {
     if(name_list.length > url_list.length){
       if(url_relu.indexOf("@") > 0){
       java.log("修复获取目录链接")
-      var tmp_list=String(result).match(/href=['"][^>]+['"]/g);
+      var tmp_list=String(result).match(/href=['"][^>'"]+['"]/g);
       var tmp_txt=JSON.stringify(tmp_list);
       //java.log(tmp_txt);
       tmp_txt=tmp_txt.replace(/href=\\['"]|\\['"]/ig,"");
@@ -146,7 +146,10 @@ function skip_check_chapter() {
             tt = host + tt;
         } else if (tt.toLowerCase().indexOf("http") == 0) {
             //tt = tt;
-        } else {
+        } else if(tt.indexOf("data:;base64") == 0){
+           tt = tt;
+        }
+        else {
             tt = baseUrl + tt;
         }
         url_list[i] = tt;
@@ -223,7 +226,7 @@ function skip_check_chapter() {
     }
 
     function find(base, step) {
-        //java.log("base:" +base + " step " + (step) + " ")
+        java.log("base:" +base + " step " + (step) + " ")
         let start, end, mid;
         start = base;
         end = start + step;
@@ -307,8 +310,8 @@ function skip_check_chapter() {
             
         }
 
-        //java.log(JSON.stringify(_t_index_list))
-        //java.log(JSON.stringify(_url_list))
+        java.log(JSON.stringify(_t_index_list))
+        java.log(JSON.stringify(_url_list))
         let resq_list = java.ajaxAll(_url_list);
 
         for (let resii = 0; resii < resq_list.length; resii++) {
