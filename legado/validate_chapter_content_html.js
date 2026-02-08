@@ -9,6 +9,10 @@ function validate_chapter_content() {
     if (txt.match(/正在(手打|获取|更新)中/)) {
         return ""
     }
+    // 起点内容没更新
+    if(is_qd_no_content(txt)){
+      return ""
+    }
     // 中文字符数统计
     let matches = txt.match(/[\u4e00-\u9fa5\u2000-\u3020\uff00-\uff60?!,]/g);
     chapter_word_count = matches ? matches.length : 0;
@@ -19,6 +23,27 @@ function validate_chapter_content() {
         return ""
     }
     return txt;
+}
+
+// 起点没有更新的内容
+function is_qd_no_content(text) {
+   // let text = String(result);
+    let lines = text.split('\n');
+    let len=40;
+    len=lines.length <len? lines.length: len;
+    for(var i=0;i<len;i++){
+      let line=lines[i];
+      java.log(line);
+      // 一段没有结束
+      let m=line.match(/([\u4e00-\u9fa5，,])\s*(\<.+\>)?$/);
+      if(m){
+       java.log(JSON.stringify(m));
+       return true;
+      }
+      
+    }
+    return false;
+    
 }
 
 // validate_chapter_content()
