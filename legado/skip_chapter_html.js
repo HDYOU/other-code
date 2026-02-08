@@ -324,7 +324,7 @@ function skip_check_chapter() {
                     continue;
                 }
                 let __html = resq.body();
-                java.setContent(__html);
+                java.setContent(__html, _url_list[resii]);
 
                 let _data = java.getString(source.ruleContent.content);
                 //java.log(_data.slice(0,20));
