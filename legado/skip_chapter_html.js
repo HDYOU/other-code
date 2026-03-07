@@ -14,6 +14,30 @@ is_check_chapter_name = true;   // 是否移除非章节
 // 自定义章节名过来正则
 chapter_name_filter_regex=/^[^第]*请假.*|^[^第]*请.{0,3}天假.*|^[^第]*更新时间.*|.*被审[核]?了.*|^[^第]*晚点再发一章.*|^[^第]*月份中奖名单|^[^第]*月份抽奖名单|^[^第]*被屏蔽[了]?$|^[^第]*更新在.*点$|^今天.*更新.*|^[^第]*晚.{0,3}更新.*|^单章通知$|^通知$|^紧急通知.*|^[^第]*[解放]出来了$|^我.*|^昨天.*|^修好了.*|^[^第]*请个假|^[^第]*刷新.?下|章节审核|^明.?看吧|^嗯.*|^上章修了|部分重写|^用马甲开了一本|开了一本|^[^第]*是单章|^[^第]*感谢大家的|^[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟]*月票|^[^第]*快乐|^万分歉意的假条|^\d+月.*|最新章审核了|^晚一会.*|^[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟]*一天.*|^.{0,1}?[^\d〇零一二两三四五六七八九十百千万壹贰叁肆伍陆柒捌玖拾佰仟第前言番外序]+.*/
 
+var book_custom_txt=book.getVariable("custom");
+if(!book_custom_txt || book_custom_txt== "") book_custom_txt="{}"
+book_custom={}
+try{
+  book_custom=JSON.parse(book_custom_txt);
+} catch {
+
+}
+
+s_key="is_check_chapter_name";
+if(book_custom.hasOwnProperty(s_key)){
+  is_check_chapter_name=book_custom[s_key] == true;
+}
+
+s_key="is_last_chapter_add_time";
+if(book_custom.hasOwnProperty(s_key)){
+  is_last_chapter_add_time=book_custom[s_key] == true;
+}
+
+s_key="skip_chapter";
+if(book_custom.hasOwnProperty(s_key)){
+  skip_chapter=book_custom[s_key] == true;
+}
+
 ////////////// --------------------------
 
 function reverse_list(myArray){
@@ -275,6 +299,39 @@ function skip_check_chapter() {
     var count = 0;
 
     dic = {}
+    book_data={};
+    function get_cache_dic_key(){
+      return source.key+"_"+book.name+"_" + book.author+"_" +"_max_chapter_cache";
+    }
+    // 设置缓存章节内容缓存
+    function set_init_dic(){
+      var txt= cache.get(get_cache_dic_key());
+      if(!txt || txt == "" ) txt="0";
+     // book_data=JSON.parse(txt);
+      var max_chapter_cache =parseInt(txt);
+      java.log(get_cache_dic_key() +": "+ max_chapter_cache);
+      //max_chapter_cache=0;
+      for(var i=0; i<=max_chapter_cache;i++){
+        dic[i]=true;
+      }
+    }
+    
+    // save max_chapter_cache
+    function save_max_chapter_cache(){
+      dic[0]=true;
+      var save_chapter_index = 0;
+      var keys=Object.keys(dic);
+      for(var s =0; s< keys.length;s++){
+        var tt=parseInt(keys[s]);
+        //java.log(tt);
+        if(dic[keys[s]] && tt > save_chapter_index) save_chapter_index=tt;
+      }
+      java.log("save_chapter_index:"+save_chapter_index);
+     // book_data[get_cache_dic_key()]= save_chapter_index;
+      cache.put(get_cache_dic_key(), save_chapter_index);
+    }
+    
+    set_init_dic();
 
     function isAllow(_t_index_list) {
 
@@ -410,6 +467,7 @@ function skip_check_chapter() {
     }
 
     java.setContent(base_src);
+    save_max_chapter_cache();
     return cc_list;
 
 }
