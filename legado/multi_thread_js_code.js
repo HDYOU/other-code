@@ -17,12 +17,15 @@ function multi_thread_js_code(js_code_list) {
          ${js_code_list[resii]};
          cache.putMemory('${cache_key}',__html);
          `
+        let s_data= JSON.stringify(js_body);
+        s_data= s_data.replace(/^"|"$/g, '');
+        s_data=js_body;
         let type = JSON.stringify({
             method: "head",
-            js: JSON.stringify(js_body),
+            js: s_data,
         });
         s_url = `http://www.baidu.com/favicon.ico,${type}`;
-        // java.log(s_url)
+        java.log(s_url)
         all_thread_url_list.push(s_url);
     }
     let rep_all = java.ajaxAll(all_thread_url_list);
@@ -31,8 +34,8 @@ function multi_thread_js_code(js_code_list) {
        let cache_key = part + "_" + resii;
         __html = cache.getFromMemory(cache_key);
         cache.deleteMemory(cache_key);
-        rs_lirs.push(__html);
+        rs_list.push(__html);
     }
 
-    return rs_lirs;
+    return rs_list;
 }
