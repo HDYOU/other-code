@@ -3,6 +3,10 @@
  * @returns {*|string}
  */
 chapter_word_count=0;
+is_qd_no_content_line_count=20;
+qd_chapter_word_count_min=1000;
+qd_chapter_word_count_max=1400;
+qd_no_content_match=/([\u4e00-\u9fa5，,])\s*(\<.+\>)?$/
 function validate_chapter_content() {
     let txt = String(result)
     txt = txt.replace(/亲,点击进去,给个好[^\n<>]*漂亮的老婆哦!|手机站全新改版[^\n<>]*广告清新阅读！|最新网址[^\n<>]*|[(（]?本章完[)）]?|推荐.*新书[^\n<>]*|手机用户[^\n<>]*阅读体验。/g,"")
@@ -19,7 +23,7 @@ function validate_chapter_content() {
     //java.log(JSON.stringify(matches))
     //java.log(`${chapter.title} 字数: ${chapter_word_count}`)
     // 起点小说内容防盗
-    if (1000 < chapter_word_count && chapter_word_count < 1400) {
+    if (qd_chapter_word_count_min < chapter_word_count && chapter_word_count < qd_chapter_word_count_max) {
         return ""
     }
     return txt;
@@ -29,13 +33,13 @@ function validate_chapter_content() {
 function is_qd_no_content(text) {
    // let text = String(result);
     let lines = text.split('\n');
-    let len=40;
+    let len=is_qd_no_content_line_count;
     len=lines.length <len? lines.length: len;
     for(var i=0;i<len;i++){
       let line=lines[i];
       java.log(line);
       // 一段没有结束
-      let m=line.match(/([\u4e00-\u9fa5，,])\s*(\<.+\>)?$/);
+      let m=line.match(qd_no_content_match);
       if(m){
        java.log(JSON.stringify(m));
        return true;
