@@ -25,7 +25,7 @@ function multi_thread_js_code(js_code_list) {
             js: s_data,
         });
         s_url = `http://www.baidu.com/favicon.ico,${type}`;
-        java.log(s_url)
+        //java.log(s_url)
         all_thread_url_list.push(s_url);
     }
     let rep_all = java.ajaxAll(all_thread_url_list);
