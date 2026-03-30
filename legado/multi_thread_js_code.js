@@ -10,7 +10,8 @@ function multi_thread_js_code(js_code_list) {
     let s_key = java.md5Encode16(js_code_list.toString())
     let part = n + "_" + s_key;
     let all_thread_url_list = [];
-    for (let resii = 0; resii < js_code_list.length; resii++) {
+    let list_len = js_code_list.length;
+    for (let resii = 0; resii < list_len; resii++) {
         let cache_key = part + "_" + resii;
         js_body = `
         	let __html='';
