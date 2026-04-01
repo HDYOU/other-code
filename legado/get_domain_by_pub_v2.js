@@ -4,6 +4,7 @@ request_test_timeout = 8 * 1000  //请求超时 8秒
 // 内容验证
 request_test_match = ""
 request_test_match = /韩国漫画|韩漫|漫畫/
+request_test_match = null
 
 //fby_url=""
 //fby_url=fby_url+",{'webView': true}";
