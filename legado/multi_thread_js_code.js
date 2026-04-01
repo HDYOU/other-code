@@ -20,7 +20,11 @@ function multi_thread_js_code(js_code_list) {
          `
         let s_data= JSON.stringify(js_body);
         s_data= s_data.replace(/^"|"$/g, '');
-        s_data=js_body;
+        tmp_js_body=js_body;
+        tmp_js_body=js_body.replace(/([^\\])"/g, (html, text)=> { return text +"\\\""})
+        s_data=tmp_js_body;
+        
+        //java.log(s_data)
         let type = JSON.stringify({
             method: "head",
             js: s_data,
