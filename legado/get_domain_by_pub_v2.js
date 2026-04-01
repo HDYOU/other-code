@@ -104,7 +104,18 @@ function get_unique_domain_list(testing_host_list) {
     http_head = "http"
     if (is_get_http_url) http_head = "https"
     for (let ipp = 0; ipp < testing_host_list.length; ipp++) {
-        let part_host = String(testing_host_list[ipp])
+        let part_host = String(testing_host_list[ipp]);
+        //  https://www.mumu888888.com  mumu888888.com
+        let is_match_part=false;
+        for (let jj = 0; jj < testing_host_list.length; jj++) {
+            if(ipp == jj) continue;
+            if(testing_host_list[jj].indexOf(part_host) > -1){
+              is_match_part=true;
+              break;
+            }
+        }
+        if(is_match_part) continue;
+        
         if (!part_host.startsWith("http")) part_host = String(http_head + "://" + part_host)
         if (!part_host.endsWith("/")) part_host = part_host + "/"
         part_host = part_host.substring(0, part_host.indexOf("/", 9))
@@ -113,17 +124,19 @@ function get_unique_domain_list(testing_host_list) {
         //java.log("append host :" + part_host)
         tmp_url_dic[part_host] = 1
     }
+    java.log(JSON.stringify(tmp_url_dic))
     return Object.keys(tmp_url_dic) || []
 }
 
 f=java.importScript("https://ghfast.top/https://raw.githubusercontent.com/HDYOU/other-code/main/legado/multi_thread_js_code.js");
 eval(String(f))
 
+
 /**
- * 测试和获取最快域名地址
+ * 测试域名地址
  * 
  */
-function test_and_get_best_host(
+function test_host(
     testing_host_list, test_part_url) {
 
     let test_host_list = get_unique_domain_list(testing_host_list)
@@ -134,11 +147,7 @@ function test_and_get_best_host(
     for (let test_i = 0; test_i < test_host_list.length; test_i++) {
         test_url_list.push(test_host_list[test_i] + test_part_url)
     }
-
-    // 测试服务
-    let host = ""
-    let cur_time = bed_time;
-    java.log("\n host test ....: ")
+    
 
     req_time_dic = {};
     thread_list = [];
@@ -147,11 +156,13 @@ function test_and_get_best_host(
     for (let resii = 0; resii < test_url_list.length; resii++) {
         let resq_test_url = test_url_list[resii]
         let tmp_host = test_host_list[resii]
+        if(request_test_match == "") request_test_match = null;
 
         let js_code = `
             try {
                 bed_time = ${bed_time};
                 tmp_host = '${test_host_list[resii]}';
+                request_test_match=${request_test_match};
                 let s_time = new Date().getTime();
 
                 //conn =java.ajax('${resq_test_url}');
@@ -172,9 +183,9 @@ function test_and_get_best_host(
                 //java.log(tmp_host + '\t' + conn.slice(0, 100))
 
                 // 内容验证
-                test_match_flag = ${request_test_match}
-                    && ${request_test_match} != ''
-                    && !conn.match(${request_test_match})
+                test_match_flag = request_test_match
+                    && request_test_match != ''
+                    && !conn.match(request_test_match)
                 if (test_match_flag) throw ('conn not match !')
 
                 let __time = new Date().getTime() - s_time;
@@ -199,9 +210,22 @@ function test_and_get_best_host(
        let tmp_host = test_host_list[resii];
        req_time_dic[tmp_host]=parseInt(__time);
     }
+    return req_time_dic;
+}
 
+/**
+ * 测试和获取最快域名地址
+ * 
+ */
+function test_and_get_best_host(
+    testing_host_list, test_part_url) {
 
+    let req_time_dic=test_host(testing_host_list, test_part_url);
     
+    // 测试服务
+    let host = ""
+    let cur_time = bed_time;
+        
     ss_txt="\n\n域名测试服务结束.\n\t\t 时间 \t\t\t\t  域名 \n"
     for (let tmp_host in req_time_dic) {
         let _time = req_time_dic[tmp_host]
