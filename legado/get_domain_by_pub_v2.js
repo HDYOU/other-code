@@ -5,7 +5,8 @@ request_test_timeout = 8 * 1000  //请求超时 8秒
 request_test_match = ""
 request_test_match = /韩国漫画|韩漫|漫畫/
 request_test_match = null
-
+test_host_time_min = 300   // 延迟测试最小值
+test_host_time_max = 30 * 1000  //  延迟测试最大值
 //fby_url=""
 //fby_url=fby_url+",{'webView': true}";
 // 多发布页
@@ -197,7 +198,7 @@ function test_host(
                 let __time = new Date().getTime() - s_time;
 
                 // 超过30秒
-                if (__time < 300 || __time > 30 * 1000) {
+                if (__time < ${test_host_time_min} || __time > ${test_host_time_max}) {
                     __time = bed_time;
                 }
                 __html = __time
