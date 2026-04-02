@@ -104,6 +104,11 @@ function get_unique_domain_list(testing_host_list) {
     let tmp_url_dic = {}
     http_head = "http"
     if (is_get_http_url) http_head = "https"
+    let new_no_testing_host_dict={};
+    for (let ipp = 0; ipp < testing_host_list.length; ipp++) {
+       new_no_testing_host_dict[testing_host_list[ipp]] = 1
+    }
+    testing_host_list=Object.keys(new_no_testing_host_dict) || [];
     for (let ipp = 0; ipp < testing_host_list.length; ipp++) {
         let part_host = String(testing_host_list[ipp]);
         //  https://www.mumu888888.com  mumu888888.com
