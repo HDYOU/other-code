@@ -1,8 +1,11 @@
-var api = ["https://sxsy18.com/"];
+var api = ["https://sxsy18.com/", "https://sxsy18.com/"];
 // 域名内容测试匹配
 var host_test_content_match=/动态/
 	
 var fabu_url = ""
+
+// 测试延迟
+var api_testing_dict = {};
 
 function getSroteData(
         source,
@@ -73,6 +76,7 @@ function getUrl(_) {
     let data = getSroteData(source);
     let select_url_index = data.select_url_index || 0;
     let url_list = data.page_list || api;
+    if( select_url_index >= url_list.length) select_url_index=0;
 
     //java.toast(JSON.stringify(url_list));
 
@@ -97,7 +101,9 @@ function getSelectHostIndex(_) {
         source
     } = _ || this;
     let data = getSroteData(source);
+    let url_list = data.page_list || api;
     let select_url_index = data.select_url_index || 0;
+    if( select_url_index >= url_list.length) select_url_index=0
     return select_url_index;
 }
 
