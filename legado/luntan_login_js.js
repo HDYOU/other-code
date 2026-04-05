@@ -326,12 +326,13 @@ function jump() {
     java.startBrowser(getUrl(), source.sourceName);
 }
 
+// 测试延迟
 function testHost() {
 
     try {
         // 设置测试的 url
         let test_url_list = []
-        let page_list=getPageList();
+        let page_list=get_unique_domain_list(getPageList());
         let test_host_list=[]
         for (let test_i = 0; test_i < page_list.length; test_i++) {
             let url = page_list[test_i];
