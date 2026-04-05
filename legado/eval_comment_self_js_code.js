@@ -2,6 +2,10 @@
  * 执行注释的自定义的JS  <js> xxxx  </js>
  */
 sourceComment = source.bookSourceComment;
+if(sourceComment == undefined){
+   //  RSS source
+   sourceComment = source.sourceComment;
+}
 start_txt = "<" + "js>";
 s_len = start_txt.length;
 end_txt = "<" + "/js>";
