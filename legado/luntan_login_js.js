@@ -331,20 +331,24 @@ function testHost() {
     try {
         // 设置测试的 url
         let test_url_list = []
-        let test_host_list=getPageList();
-        for (let test_i = 0; test_i < test_host_list.length; test_i++) {
-            test_url_list.push(tmp_proxy_url(test_host_list[test_i]))
+        let page_list=getPageList();
+        let test_host_list=[]
+        for (let test_i = 0; test_i < page_list.length; test_i++) {
+            let url = page_list[test_i];
+            test_url_list.push(tmp_proxy_url(url))
+            test_host_list.push(url.replace(/\/$/, ""))
         }
         java.toast(JSON.stringify((test_url_list)));
-        let api_testing_dict = test_url_func(test_url_list, test_host_list);
-        putInfo(api_testing_dict_key, api_testing_dict || {});
+        let tmp_api_testing_dict = test_url_func(test_url_list, test_host_list);
+        putInfo(api_testing_dict_key, tmp_api_testing_dict);
+        refreshUI();
     } catch (e) {
         java.toast(e)
     }
     // java.toast("test .....2222")
-    java.toast(JSON.stringify((api_testing_dict)));
+   // java.toast(JSON.stringify((api_testing_dict)));
     // testApiHost();
-    refreshUI();
+    
 }
 
 // 签到
