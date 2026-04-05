@@ -6,6 +6,10 @@ request_test_match = ""
 request_test_match = /韩国漫画|韩漫|漫畫/
 request_test_match = null
 
+test_host_time_min = 300
+test_host_time_max = 30 * 1000
+
+
 //fby_url=""
 //fby_url=fby_url+",{'webView': true}";
 // 多发布页
@@ -184,7 +188,7 @@ function test_url_func(test_url_list, test_host_list) {
                 let __time = new Date().getTime() - s_time;
 
                 // 超过30秒
-                if (__time < 300 || __time > 30 * 1000) {
+                if (__time < ${test_host_time_min} || __time > ${test_host_time_max}) {
                     __time = bed_time;
                 }
                 __html = __time
