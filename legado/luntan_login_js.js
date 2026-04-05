@@ -10,6 +10,14 @@ function tmp_proxy_url(url) {
     return tmp_url;
 }
 
+function saveCookieToHeader(){
+   c = cookie.getCookie(tmp_proxy_url(getUrl()));
+   if(!c || c == ""){
+      c = cookie.getCookie(getUrl());
+   }
+   source.putLoginHeader(c);
+}
+
 function login(b) {
     if (b == undefined) return true;
     info = result
@@ -23,6 +31,17 @@ function login(b) {
         let login_html_url = so + "member.php?mod=logging&action=login&mobile=date";
 
         let html = java.ajax(tmp_proxy_url(login_html_url));
+        
+        mm = String(html).match(/欢迎您回来，(.*?) (.*?)，现在将转入登录前页面/);
+        // java.toast(mm);
+        if (mm) {
+            java.log(mm);
+            java.toast(`\n${mm[1]} ${mm[2]}` + ' \n登录成功');
+            saveCookieToHeader();
+            return
+        }
+         
+        
 
         // java.log(html);
         doc = org.jsoup.Jsoup.parse(html)
@@ -73,18 +92,16 @@ function login(b) {
             "method": "POST"
         })
         url = login_url + "," + post
-        result = java.ajax(tmp_proxy_url(url))
-        java.log(result)
-        java.toast(result)
-        mm = String(result).match(/欢迎您回来，(.*?) (.*?)，现在将转入登录前页面/);
+        html = java.ajax(tmp_proxy_url(url))
+        java.log(html)
+        java.toast(html)
+        mm = String(html).match(/欢迎您回来，(.*?) (.*?)，现在将转入登录前页面/);
         java.toast(mm);
         if (mm) {
             java.log(mm);
             java.toast(`\n${mm[1]} ${mm[2]}` + ' \n登录成功');
         }
-        c = cookie.getCookie(getUrl());
-        // java.toast("cookie:\n "+c)
-        source.putLoginHeader(c);
+        saveCookieToHeader()
     } catch (err) {
         java.log("登录失败! \n" + err);
         java.toast("登录失败! \n" + err);
@@ -101,6 +118,7 @@ function D() {
     //输出日志，备用
     java.log('\n用户名/邮箱：' + result['用户名/邮箱'] + '\n密码：' + result['密码']);
     cookie.removeCookie(getUrl());
+    cookie.removeCookie(tmp_proxy_url(getUrl()))
     source.removeLoginHeader();
     result['用户名/邮箱'] = result['密码'] = '';
     source.putLoginInfo(JSON.stringify(result));
@@ -311,7 +329,14 @@ function jump() {
 function testHost() {
 
     try {
-        api_testing_dict = test_host(getPageList(), "/");
+        // 设置测试的 url
+        let test_url_list = []
+        let test_host_list=getPageList();
+        for (let test_i = 0; test_i < test_host_list.length; test_i++) {
+            test_url_list.push(tmp_proxy_url(test_host_list[test_i]))
+        }
+        java.toast(JSON.stringify((test_url_list)));
+        let api_testing_dict = test_url_func(test_url_list, test_host_list);
         putInfo(api_testing_dict_key, api_testing_dict || {});
     } catch (e) {
         java.toast(e)
@@ -364,6 +389,8 @@ function sigin() {
 }
 
 function removeCookie() {
-    cookie.removeCookie(getUrl());
+    so = getUrl();
+    cookie.removeCookie(so);
+    cookie.removeCookie(tmp_proxy_url(so))
     java.toast('清除Cookie成功');
 }
