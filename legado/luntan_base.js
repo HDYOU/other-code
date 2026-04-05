@@ -13,11 +13,11 @@ function getSroteData() {
 
     try {
         let text = ""
-        text = String(source.getVariable());
+        //text = String(source.getVariable());
         //text=java.get("data");
         //text=source.getLoginInfoMap().get("data");
         //
-        //text=cache.get(source.key+"_"+"data")
+        text=cache.get(source.key+"_"+"data")
 
         //  java.log("data:"+text)
         if (text == null || text == "") text = "{}";
@@ -33,12 +33,12 @@ function saveSroteData(data) {
 
     try {
         let txt = JSON.stringify(data);
-        source.setVariable(txt);
+        //source.setVariable(txt);
         //java.put("data", txt);
         // source.getLoginInfoMap().put("data", txt);
         //source.getLoginInfoMap().save()
         //  java.upLoginData()
-        // cache.put(source.key+"_"+"data" , txt)
+         cache.put(source.key+"_"+"data" , txt)
     } catch (err) {
 
     }
