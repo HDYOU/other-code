@@ -237,15 +237,6 @@ function loginViewItemIsOk(key) {
     try {
         return source.getLoginInfoMap().get(key) == "✅";
     } catch (err) {}
-
-    try {
-        const {
-            source
-        } = _ || this;
-        return source.getLoginInfoMap().get(key) == "✅";
-    } catch (err) {
-        // java.log(err)
-    }
     return false;
 }
 
