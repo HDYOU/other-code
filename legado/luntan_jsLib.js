@@ -2,7 +2,9 @@ var api = ["https://sxsy18.com/", "https://sxsy18.com/"];
 // 域名内容测试匹配
 var host_test_content_match=/动态/
 	
-var fabu_url = ""
+var fabu_url = "";
+var fabu_url_is_image= false;
+var fabu_url_find_rule = "a@href"   //  @后面获取属性, @前面为  css 选择器  //.为空时 获取全部
 
 // 测试延迟
 var api_testing_dict = {};
