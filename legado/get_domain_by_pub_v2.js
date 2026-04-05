@@ -5,8 +5,7 @@ request_test_timeout = 8 * 1000  //请求超时 8秒
 request_test_match = ""
 request_test_match = /韩国漫画|韩漫|漫畫/
 request_test_match = null
-test_host_time_min = 300   // 延迟测试最小值
-test_host_time_max = 30 * 1000  //  延迟测试最大值
+
 //fby_url=""
 //fby_url=fby_url+",{'webView': true}";
 // 多发布页
@@ -35,7 +34,7 @@ exclude_html_key_list=[".push", "favicon.ico", "window.", "document.", "this.", 
 , "toLowe", "JSON", "parameters", "navigator"
 ,"java","okhttp","android","legado","SSLInputStream",".css",".js",".length", "window." , ".ico", ".push" , "document." , "Container." , ".png", ".jpg", ".webp", ".html"
 ,".zeroP", ".send", ".open", ".onread", ".reques", ".info.vendor", ".Date", ".maxL", ".zeroP", ".vendor", ".loopD"
-,"c.quick", "p.test", "https://t.info"
+,"c.quick", "p.test", "https://t.info", ".content", ".innerH", ".create", ".getE", ".width",".height", ".src"
 ]
 
 // 排除的域名
@@ -138,24 +137,11 @@ function get_unique_domain_list(testing_host_list) {
 f=java.importScript("https://ghfast.top/https://raw.githubusercontent.com/HDYOU/other-code/main/legado/multi_thread_js_code.js");
 eval(String(f))
 
-
 /**
- * 测试域名地址
+ * 测试 url 地址
  * 
  */
-function test_host(
-    testing_host_list, test_part_url) {
-
-    let test_host_list = get_unique_domain_list(testing_host_list)
-    java.log("测试域名：\n\t" + JSON.stringify(test_host_list))
-
-    // 设置测试的 url
-    let test_url_list = []
-    for (let test_i = 0; test_i < test_host_list.length; test_i++) {
-        test_url_list.push(test_host_list[test_i] + test_part_url)
-    }
-    
-
+function test_url_func(test_url_list, test_host_list) {
     req_time_dic = {};
     thread_list = [];
 
@@ -198,7 +184,7 @@ function test_host(
                 let __time = new Date().getTime() - s_time;
 
                 // 超过30秒
-                if (__time < ${test_host_time_min} || __time > ${test_host_time_max}) {
+                if (__time < 300 || __time > 30 * 1000) {
                     __time = bed_time;
                 }
                 __html = __time
@@ -218,6 +204,24 @@ function test_host(
        req_time_dic[tmp_host]=parseInt(__time);
     }
     return req_time_dic;
+}
+
+/**
+ * 测试域名地址
+ * 
+ */
+function test_host(
+    testing_host_list, test_part_url) {
+
+    let test_host_list = get_unique_domain_list(testing_host_list)
+    java.log("测试域名：\n\t" + JSON.stringify(test_host_list))
+
+    // 设置测试的 url
+    let test_url_list = []
+    for (let test_i = 0; test_i < test_host_list.length; test_i++) {
+        test_url_list.push(test_host_list[test_i] + test_part_url)
+    }
+    return test_url_func(test_url_list, test_host_list)
 }
 
 /**
@@ -291,47 +295,8 @@ function handle_pub_html_list(html_dict) {
     return Object.keys(tmp_url_dic) || [];
 }
 
-/**
- * 获取可用的域名
- * @returns 域名 eg; https://www.baidu.com/
- */
-function get_domain() {
-
-    // 主要处理逻辑
-    base_host_key = "base_host"
-    base_host = java.get(base_host_key)
-    if (base_host != "") {
-        return base_host;
-    }
-    let variable = source.getVariable();
-    if (!variable || variable == "") variable = "{}";
-    java.log("variable:" + variable)
-    let hosts_dict = JSON.parse(variable);
-    if (hosts_dict) {
-        exclude_url_list = hosts_dict.exclude_url_list || exclude_url_list;
-
-        let flag = hosts_dict.hasOwnProperty("base_host")
-            && hosts_dict.hasOwnProperty("timestamp")
-        //java.log("flag:" + flag)
-        if (flag) {
-            let t_timestamp = hosts_dict["timestamp"];
-            let cur_time = new Date().getTime();
-            let __end_time = cur_time - allow_day * 24 * 60 * 60 * 1000
-            t_flag=__end_time < t_timestamp;
-            // 过期
-            if (t_flag) {
-                base_host = hosts_dict[base_host_key];
-                java.put(base_host_key, base_host)
-
-                return base_host;
-            }
-            java.log("缓存已经过期，重新获取域名 ...")
-        }
-    }
-
-
     // 获取可用URL 列表
-    function get_url_list() {
+    function get_url_list_by_fabu(fby_url_list) {
 
         //  1.直接给出域名列，不用解析发布页，直接返回
         if (real_host_list && real_host_list.length > 0) {
@@ -342,7 +307,7 @@ function get_domain() {
         fai_thread_list = [];
         // 接收请求内容
         html_dict = {}
-        java.log("查找可用的域名 ......")
+        java.log("从发布页查找可用的域名 ......")
         // 多线程请求
         for (let resii = 0; resii < fby_url_list.length; resii++) {
             let resq_test_url = fby_url_list[resii]
@@ -382,7 +347,45 @@ function get_domain() {
     }
 
 
-    url_list = get_url_list();
+/**
+ * 获取可用的域名
+ * @returns 域名 eg; https://www.baidu.com/
+ */
+function get_domain() {
+
+    // 主要处理逻辑
+    base_host_key = "base_host"
+    base_host = java.get(base_host_key)
+    if (base_host != "") {
+        return base_host;
+    }
+    let variable = source.getVariable();
+    if (!variable || variable == "") variable = "{}";
+    java.log("variable:" + variable)
+    let hosts_dict = JSON.parse(variable);
+    if (hosts_dict) {
+        exclude_url_list = hosts_dict.exclude_url_list || exclude_url_list;
+
+        let flag = hosts_dict.hasOwnProperty("base_host")
+            && hosts_dict.hasOwnProperty("timestamp")
+        //java.log("flag:" + flag)
+        if (flag) {
+            let t_timestamp = hosts_dict["timestamp"];
+            let cur_time = new Date().getTime();
+            let __end_time = cur_time - allow_day * 24 * 60 * 60 * 1000
+            t_flag=__end_time < t_timestamp;
+            // 过期
+            if (t_flag) {
+                base_host = hosts_dict[base_host_key];
+                java.put(base_host_key, base_host)
+
+                return base_host;
+            }
+            java.log("缓存已经过期，重新获取域名 ...")
+        }
+    }
+
+    url_list = get_url_list_by_fabu(fby_url_list);
     
     // 查找可能的域名
     //java.log(JSON.stringify(url_list))
