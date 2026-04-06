@@ -62,7 +62,7 @@ real_exclude_domain_key_list=[]
 function is_exclude(part_host) {
     if (part_host == "") return true
 
-    var patt = /^(http[s]?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}[\/]?$/i;
+    var patt = /^(http[s]?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z\d]{1,6}[\/]?$/i;
 
     if (!patt.test(part_host)) return true
     
