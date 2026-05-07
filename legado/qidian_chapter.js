@@ -10,7 +10,7 @@ function get_qd_chapter_list() {
 function get_qd_chapter_list_by_bookid(qd_bookid) {
     cache_qd_chapter_key = `qidian_chapter_${qd_bookid}`;
     cache_qd_chapter = cache.get(cache_qd_chapter_key);
-    java.log("cache_qd_chapter:"+cache_qd_chapter)
+    //java.log("cache_qd_chapter:"+cache_qd_chapter)
     if (cache_qd_chapter && cache_qd_chapter != "") {
         try {
             qd_chapter = JSON.parse(cache_qd_chapter);
