@@ -22,14 +22,16 @@ is_get_http_url = true;
 real_host_list = [];
 // 测试域名的 uri
 test_uri_path = "/";
+// 测试域名 没有大写字母
+test_host_no_upper_case = true;
 // 域名的不包含的 字符串
-exclude_domain_key_list = [".apk", "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "jm365", ".push", "gtag.js", ".css", "favicon.ico", "window.", "googletagmanager.com", "document.", "this.", "apk", ".png", ".ico", ".json", ".js", "Button.", "androidUrl"
+exclude_domain_key_list = [".apk", "discord.gg", "//t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "jm365", ".push", "gtag.js", ".css", "favicon.ico", "window.", "googletagmanager.com", "document.", "this.", "apk", ".png", ".ico", ".json", ".js", "Button.", "androidUrl"
 , "location.", ".html", ".append", "res.text", "res.ok", ".href", ".target", "button.", "url.replac", "console.log", "data.code", "JSON.", "e.preven"]
 
 // html 排除的域名
 exclude_html_key_list=[".push", "favicon.ico", "window.", "document.", "this.", "Button.", "androidUrl"
 
-, "discord.gg", "t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "router.parklogic.com"
+, "discord.gg", "//t.me", "cdn-cgi", "gmail.com", "google", "github.com", "qq.com", "router.parklogic.com"
 
 , ".html", ".js", ".css", ".ico", ".png", ".jpg", ".json", ".webo", ".jpeg", ".apk", ".exe", ".zip", ".rar", ".gz", ".tar"
 
@@ -38,7 +40,9 @@ exclude_html_key_list=[".push", "favicon.ico", "window.", "document.", "this.", 
 , "toLowe", "JSON", "parameters", "navigator"
 ,"java","okhttp","android","legado","SSLInputStream",".css",".js",".length", "window." , ".ico", ".push" , "document." , "Container." , ".png", ".jpg", ".webp", ".html"
 ,".zeroP", ".send", ".open", ".onread", ".reques", ".info.vendor", ".Date", ".maxL", ".zeroP", ".vendor", ".loopD"
-,"c.quick", "p.test", "https://t.info", ".content", ".innerH", ".create", ".getE", ".width",".height", ".src"
+,"c.quick", "p.test", "//t.info", ".content", ".innerH", ".create", ".getE", ".width",".height", ".src", "Base64",".index",".replac",".charAt","String.","//x.com", "www.w3.org",".random", ".qurey", ".substr", "Date.now", "Promise.", "div.btn", "Link.", ".value.", ".shift", "static.cloudflareinsights.com"
+
+ ,"//github.com", "//gitlab.com","//www.github.com", "//www.gitlab.com"
 ]
 
 // 排除的域名
@@ -65,6 +69,9 @@ function is_exclude(part_host) {
     var patt = /^(http[s]?:\/\/)?([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z\d]{1,6}[\/]?$/i;
 
     if (!patt.test(part_host)) return true
+    
+    // 测试域名没有大写字母
+    if(test_host_no_upper_case && /[A-Z]/.test(part_host)) return true;
     
     if(real_exclude_domain_key_list.length <1){
       s_dic={}
@@ -113,6 +120,7 @@ function get_unique_domain_list(testing_host_list) {
        new_no_testing_host_dict[testing_host_list[ipp]] = 1
     }
     testing_host_list=Object.keys(new_no_testing_host_dict) || [];
+     java.log("testing_host_list:"+JSON.stringify(testing_host_list))
     for (let ipp = 0; ipp < testing_host_list.length; ipp++) {
         let part_host = String(testing_host_list[ipp]);
         //  https://www.mumu888888.com  mumu888888.com
