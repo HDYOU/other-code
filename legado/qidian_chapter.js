@@ -1,22 +1,26 @@
 // 获取起点章节目录
-function get_qd_chapter_list() {
+function get_qd_chapter_list(is_no_read_cache=false) {
     cache_qd_bookid_key = `qidian_bookid_${book.name}_${book.author}`;
     qd_bookid = cache.get(cache_qd_bookid_key);
-    //java.log("cache_qd_bookid_key:" + cache_qd_bookid_key);
+    ////java.log("cache_qd_bookid_key:" + cache_qd_bookid_key);
     if (!qd_bookid || qd_bookid == "") return [];
-    return get_qd_chapter_list_by_bookid(qd_bookid);
+    return get_qd_chapter_list_by_bookid(qd_bookid, is_no_read_cache);
 }
 
-function get_qd_chapter_list_by_bookid(qd_bookid) {
+function get_qd_chapter_list_by_bookid(qd_bookid, is_no_read_cache=false) {
     cache_qd_chapter_key = `qidian_chapter_${qd_bookid}`;
     cache_qd_chapter = cache.get(cache_qd_chapter_key);
-    //java.log("cache_qd_chapter:"+cache_qd_chapter)
-    if (cache_qd_chapter && cache_qd_chapter != "") {
+    ////java.log("cache_qd_chapter:"+cache_qd_chapter)
+    if ( is_no_read_cache != true && cache_qd_chapter && cache_qd_chapter != "") {
         try {
-            qd_chapter = JSON.parse(cache_qd_chapter);
-            if(qd_chapter && qd_chapter.length > 0) return qd_chapter
+            qd_chapter_data = JSON.parse(cache_qd_chapter);
+            now=new Date().getTime();
+            qd_chapter=qd_chapter_data.data || [];
+            deadlineTime=qd_chapter_data.deadlineTime || 0;
+            //java.log(`${now} < ${deadlineTime}   : ${now < deadlineTime}`)
+            if(qd_chapter && qd_chapter.length > 0 && now < deadlineTime) return qd_chapter
         } catch (e) {
-            java.log(e)
+            //java.log(e)
         }
     }
 
@@ -30,10 +34,10 @@ function get_qd_chapter_list_by_bookid(qd_bookid) {
     }
     tocUrl = `https://m.qidian.com/book/${qd_bookid}/catalog/,${JSON.stringify(option)}`;
     html = java.ajax(tocUrl);
-    //java.log("qd html:\n"+html)
+    ////java.log("qd html:\n"+html)
     java.setContent(html, tocUrl);
     eles = java.getElements(".y-list__item@a,._chapterBar_fps9g_592");
-    //java.log("eles:"+JSON.stringify(eles));
+    ////java.log("eles:"+JSON.stringify(eles));
     chapter_list = [];
     for (var i = 0; i < eles.length; i++) {
         ele = eles[i];
@@ -64,6 +68,16 @@ function get_qd_chapter_list_by_bookid(qd_bookid) {
     }
 
     cache_hour = 12; // 缓存12小时
-    if(chapter_list.length > 0) cache.put(cache_qd_chapter_key, JSON.stringify(chapter_list, cache_hour * 60*60));
+    cache_time=cache_hour * 60 * 60;
+    c_len=chapter_list.length;
+    now=new Date().getTime();
+    //java.log(`cache_time:${cache_time}`)
+    deadlineTime= now + cache_time *1000;
+    //java.log(`save: ${now} < ${deadlineTime}   : ${now < deadlineTime}`);
+    cache_data={
+      "deadlineTime": deadlineTime,
+      "data": chapter_list
+    }
+    if(c_len > 0) cache.put(cache_qd_chapter_key, JSON.stringify(cache_data, cache_time));
     return chapter_list;
 }
