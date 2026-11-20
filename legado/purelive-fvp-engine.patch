@@ -1,0 +1,1576 @@
+diff --git a/apps/pure_live/assets/translations/de.json b/apps/pure_live/assets/translations/de.json
+index 6916cec..0a27de7 100644
+--- a/apps/pure_live/assets/translations/de.json
++++ b/apps/pure_live/assets/translations/de.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Diese JD-Übertragung kann nur in der JD-App angesehen werden.",
+     "keep_editing": "Weiter bearbeiten",
+     "kernel_switch": "Player-Engine",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Verschiedene Engines wirken sich auf die Leistung aus",
+     "keyword_added_count": "{count} Stichwörter hinzugefügt",
+     "keyword_already_blocked": "„{word}“ ist bereits gesperrt",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Detaillierte Stream-Leitungen",
+     "playback_line_details_desc": "Standardmäßig aus. Zeigt bei Aktivierung Codec, Raw und CDN, sonst nur Leitung 1, Leitung 2.",
+     "playback_network_lost": "Netzwerk verloren; die Wiedergabe setzt von selbst fort, sobald es zurück ist",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Player-Engine",
+     "player_mpv": "MPV-Player",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Player-Kernel-Proxy (behebt das Abrufen von Livestreams)",
+     "playlist": "Wiedergabeliste",
+     "please_enter_keyword": "Bitte ein Stichwort eingeben",
+diff --git a/apps/pure_live/assets/translations/en.json b/apps/pure_live/assets/translations/en.json
+index 782bf7b..793e42f 100644
+--- a/apps/pure_live/assets/translations/en.json
++++ b/apps/pure_live/assets/translations/en.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "This JD broadcast can only be watched in the JD app.",
+     "keep_editing": "Keep editing",
+     "kernel_switch": "Player Engine",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Different engines affect performance",
+     "keyword_added_count": "Added {count} keywords",
+     "keyword_already_blocked": "\"{word}\" is already blocked",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Detailed stream lines",
+     "playback_line_details_desc": "Off by default. Enable codec, Raw and CDN details; otherwise show only Line 1, Line 2.",
+     "playback_network_lost": "Network lost; playback resumes by itself when it is back",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Player Engine",
+     "player_mpv": "MPV Player",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Player Kernel Proxy (Fixes live stream fetching)",
+     "playlist": "Playlist",
+     "please_enter_keyword": "Please enter a keyword",
+diff --git a/apps/pure_live/assets/translations/es.json b/apps/pure_live/assets/translations/es.json
+index 4bda5af..efcfa2e 100644
+--- a/apps/pure_live/assets/translations/es.json
++++ b/apps/pure_live/assets/translations/es.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Esta emisión de JD solo se puede ver en la app de JD.",
+     "keep_editing": "Seguir editando",
+     "kernel_switch": "Motor del reproductor",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Cada motor afecta al rendimiento de forma distinta",
+     "keyword_added_count": "Se añadieron {count} palabras clave",
+     "keyword_already_blocked": "“{word}” ya está bloqueada",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Detalles de las líneas",
+     "playback_line_details_desc": "Desactivado por defecto. Muestra códec, Raw y CDN al activarlo; de lo contrario, solo Línea 1, Línea 2.",
+     "playback_network_lost": "Sin conexión; la reproducción se reanuda sola cuando vuelva",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Motor del reproductor",
+     "player_mpv": "Reproductor MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proxy del núcleo del reproductor (soluciona la obtención de directos)",
+     "playlist": "Lista de reproducción",
+     "please_enter_keyword": "Introduce una palabra clave",
+diff --git a/apps/pure_live/assets/translations/fr.json b/apps/pure_live/assets/translations/fr.json
+index 862a20f..2b7ceda 100644
+--- a/apps/pure_live/assets/translations/fr.json
++++ b/apps/pure_live/assets/translations/fr.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Cette diffusion JD ne peut être regardée que dans l’app JD.",
+     "keep_editing": "Continuer la modification",
+     "kernel_switch": "Moteur du lecteur",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Chaque moteur influe différemment sur les performances",
+     "keyword_added_count": "{count} mots-clés ajoutés",
+     "keyword_already_blocked": "« {word} » est déjà bloqué",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Détails des lignes vidéo",
+     "playback_line_details_desc": "Désactivé par défaut. Affiche le codec, Raw et le CDN si activé, sinon seulement Ligne 1, Ligne 2.",
+     "playback_network_lost": "Réseau perdu ; la lecture reprend d’elle-même à son retour",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Moteur du lecteur",
+     "player_mpv": "Lecteur MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proxy du noyau du lecteur (corrige la récupération des directs)",
+     "playlist": "Liste de lecture",
+     "please_enter_keyword": "Saisissez un mot-clé",
+diff --git a/apps/pure_live/assets/translations/id.json b/apps/pure_live/assets/translations/id.json
+index e97b718..633f81f 100644
+--- a/apps/pure_live/assets/translations/id.json
++++ b/apps/pure_live/assets/translations/id.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Siaran JD ini hanya dapat ditonton di aplikasi JD.",
+     "keep_editing": "Lanjutkan mengedit",
+     "kernel_switch": "Mesin Pemutar",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Mesin berbeda memengaruhi performa",
+     "keyword_added_count": "{count} kata kunci ditambahkan",
+     "keyword_already_blocked": "“{word}” sudah diblokir",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Detail jalur streaming",
+     "playback_line_details_desc": "Nonaktif secara default. Aktifkan detail codec, Raw dan CDN; jika tidak, hanya Jalur 1, Jalur 2.",
+     "playback_network_lost": "Jaringan terputus; pemutaran lanjut sendiri saat tersambung lagi",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Mesin Pemutar",
+     "player_mpv": "Pemutar MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proksi Kernel Pemutar (Memperbaiki pengambilan siaran)",
+     "playlist": "Daftar Putar",
+     "please_enter_keyword": "Masukkan kata kunci",
+diff --git a/apps/pure_live/assets/translations/it.json b/apps/pure_live/assets/translations/it.json
+index e9a049f..7cb7d1f 100644
+--- a/apps/pure_live/assets/translations/it.json
++++ b/apps/pure_live/assets/translations/it.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Questa trasmissione JD si può guardare solo nell’app JD.",
+     "keep_editing": "Continua a modificare",
+     "kernel_switch": "Motore del player",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Motori diversi influiscono sulle prestazioni",
+     "keyword_added_count": "Aggiunte {count} parole chiave",
+     "keyword_already_blocked": "“{word}” è già bloccata",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Dettagli delle linee",
+     "playback_line_details_desc": "Disattivato per impostazione predefinita. Mostra codec, Raw e CDN se attivato, altrimenti solo Linea 1, Linea 2.",
+     "playback_network_lost": "Rete persa; la riproduzione riprende da sola quando torna",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Motore del player",
+     "player_mpv": "Player MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proxy del kernel del player (risolve il recupero delle dirette)",
+     "playlist": "Playlist",
+     "please_enter_keyword": "Inserisci una parola chiave",
+diff --git a/apps/pure_live/assets/translations/ja.json b/apps/pure_live/assets/translations/ja.json
+index be37687..d02bf16 100644
+--- a/apps/pure_live/assets/translations/ja.json
++++ b/apps/pure_live/assets/translations/ja.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "この JD 配信は JD アプリでのみ視聴できます。",
+     "keep_editing": "編集を続ける",
+     "kernel_switch": "プレーヤーエンジン",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "エンジンによってパフォーマンスが変わります",
+     "keyword_added_count": "{count} 件のキーワードを追加しました",
+     "keyword_already_blocked": "「{word}」はすでにブロック済みです",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "回線の詳細情報",
+     "playback_line_details_desc": "初期設定はオフ。オンにするとコーデック、Raw、CDNを表示し、オフでは回線1、回線2のみ表示します。",
+     "playback_network_lost": "ネットワークが切断されました。復旧すると自動的に再生を再開します",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "プレーヤーエンジン",
+     "player_mpv": "MPV プレーヤー",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "プレーヤーカーネルのプロキシ(配信の取得を修正)",
+     "playlist": "プレイリスト",
+     "please_enter_keyword": "キーワードを入力してください",
+diff --git a/apps/pure_live/assets/translations/ko.json b/apps/pure_live/assets/translations/ko.json
+index 64c49e0..d60e46c 100644
+--- a/apps/pure_live/assets/translations/ko.json
++++ b/apps/pure_live/assets/translations/ko.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "이 JD 방송은 JD 앱에서만 볼 수 있습니다.",
+     "keep_editing": "계속 편집",
+     "kernel_switch": "플레이어 엔진",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "엔진에 따라 성능이 달라집니다",
+     "keyword_added_count": "키워드 {count}개를 추가했습니다",
+     "keyword_already_blocked": "‘{word}’은(는) 이미 차단되었습니다",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "스트림 회선 상세 정보",
+     "playback_line_details_desc": "기본값은 꺼짐입니다. 켜면 코덱, Raw, CDN을 표시하며, 끄면 회선1, 회선2만 표시합니다.",
+     "playback_network_lost": "네트워크가 끊겼습니다. 복구되면 자동으로 다시 재생합니다",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "플레이어 엔진",
+     "player_mpv": "MPV 플레이어",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "플레이어 커널 프록시(방송 가져오기 문제 해결)",
+     "playlist": "재생 목록",
+     "please_enter_keyword": "키워드를 입력하세요",
+diff --git a/apps/pure_live/assets/translations/pt.json b/apps/pure_live/assets/translations/pt.json
+index a1b0814..abd31cf 100644
+--- a/apps/pure_live/assets/translations/pt.json
++++ b/apps/pure_live/assets/translations/pt.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Esta transmissão do JD só pode ser assistida no app do JD.",
+     "keep_editing": "Continuar editando",
+     "kernel_switch": "Motor do player",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Motores diferentes afetam o desempenho",
+     "keyword_added_count": "{count} palavras-chave adicionadas",
+     "keyword_already_blocked": "“{word}” já está bloqueada",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Detalhes das linhas",
+     "playback_line_details_desc": "Desativado por padrão. Ative detalhes de codec, Raw e CDN; caso contrário, mostre apenas Linha 1, Linha 2.",
+     "playback_network_lost": "Rede perdida; a reprodução retoma sozinha quando ela voltar",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Motor do player",
+     "player_mpv": "Player MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proxy do núcleo do player (corrige a obtenção de transmissões)",
+     "playlist": "Playlist",
+     "please_enter_keyword": "Digite uma palavra-chave",
+diff --git a/apps/pure_live/assets/translations/ru.json b/apps/pure_live/assets/translations/ru.json
+index 0dd94d5..a6b3de2 100644
+--- a/apps/pure_live/assets/translations/ru.json
++++ b/apps/pure_live/assets/translations/ru.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Этот эфир JD можно смотреть только в приложении JD.",
+     "keep_editing": "Продолжить редактирование",
+     "kernel_switch": "Движок плеера",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Разные движки влияют на производительность",
+     "keyword_added_count": "Добавлено ключевых слов: {count}",
+     "keyword_already_blocked": "«{word}» уже заблокировано",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Подробности линий",
+     "playback_line_details_desc": "По умолчанию выключено. При включении отображаются кодек, Raw и CDN, иначе только Линия 1, Линия 2.",
+     "playback_network_lost": "Сеть потеряна; воспроизведение продолжится само, когда она вернётся",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Движок плеера",
+     "player_mpv": "Плеер MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Прокси ядра плеера (исправляет получение трансляций)",
+     "playlist": "Плейлист",
+     "please_enter_keyword": "Введите ключевое слово",
+diff --git a/apps/pure_live/assets/translations/th.json b/apps/pure_live/assets/translations/th.json
+index 492f5ed..616b5dc 100644
+--- a/apps/pure_live/assets/translations/th.json
++++ b/apps/pure_live/assets/translations/th.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "การถ่ายทอด JD นี้ดูได้เฉพาะในแอป JD",
+     "keep_editing": "แก้ไขต่อ",
+     "kernel_switch": "เอนจินเครื่องเล่น",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "เอนจินต่างกันส่งผลต่อประสิทธิภาพต่างกัน",
+     "keyword_added_count": "เพิ่มคำสำคัญ {count} คำแล้ว",
+     "keyword_already_blocked": "“{word}” ถูกบล็อกอยู่แล้ว",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "รายละเอียดสายสตรีม",
+     "playback_line_details_desc": "ปิดตามค่าเริ่มต้น เมื่อเปิดจะแสดงโคเดก Raw และ CDN มิฉะนั้นจะแสดงเพียงสาย 1 สาย 2",
+     "playback_network_lost": "เครือข่ายหลุด จะเล่นต่อเองเมื่อกลับมา",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "เอนจินเครื่องเล่น",
+     "player_mpv": "เครื่องเล่น MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "พร็อกซีเคอร์เนลเครื่องเล่น (แก้การดึงไลฟ์)",
+     "playlist": "เพลย์ลิสต์",
+     "please_enter_keyword": "โปรดป้อนคีย์เวิร์ด",
+diff --git a/apps/pure_live/assets/translations/tr.json b/apps/pure_live/assets/translations/tr.json
+index 8a539e5..f113eec 100644
+--- a/apps/pure_live/assets/translations/tr.json
++++ b/apps/pure_live/assets/translations/tr.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Bu JD yayını yalnızca JD uygulamasında izlenebilir.",
+     "keep_editing": "Düzenlemeye devam et",
+     "kernel_switch": "Oynatıcı Motoru",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Farklı motorlar performansı etkiler",
+     "keyword_added_count": "{count} anahtar kelime eklendi",
+     "keyword_already_blocked": "“{word}” zaten engellendi",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Yayın hattı ayrıntıları",
+     "playback_line_details_desc": "Varsayılan olarak kapalıdır. Açıldığında codec, Raw ve CDN gösterilir; aksi halde yalnızca Hat 1, Hat 2 görünür.",
+     "playback_network_lost": "Ağ bağlantısı koptu; geri geldiğinde oynatma kendiliğinden sürer",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Oynatıcı Motoru",
+     "player_mpv": "MPV Oynatıcı",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Oynatıcı Çekirdeği Proxy’si (Canlı yayın alımını düzeltir)",
+     "playlist": "Oynatma listesi",
+     "please_enter_keyword": "Lütfen bir anahtar kelime girin",
+diff --git a/apps/pure_live/assets/translations/vi.json b/apps/pure_live/assets/translations/vi.json
+index bcb2c2e..c4a4246 100644
+--- a/apps/pure_live/assets/translations/vi.json
++++ b/apps/pure_live/assets/translations/vi.json
+@@ -1020,6 +1020,7 @@
+     "jdlive_restricted_notice": "Buổi phát JD này chỉ xem được trong ứng dụng JD.",
+     "keep_editing": "Tiếp tục chỉnh sửa",
+     "kernel_switch": "Nhân trình phát",
++    "kernel_switch_hint": "Applies when a room or multi-view cell opens next",
+     "kernel_switch_subtitle": "Mỗi nhân ảnh hưởng hiệu năng khác nhau",
+     "keyword_added_count": "Đã thêm {count} từ khóa",
+     "keyword_already_blocked": "“{word}” đã bị chặn",
+@@ -1803,8 +1804,11 @@
+     "playback_line_details": "Chi tiết đường truyền",
+     "playback_line_details_desc": "Mặc định tắt. Bật để hiện codec, Raw và CDN; nếu tắt chỉ hiện Đường truyền 1, Đường truyền 2.",
+     "playback_network_lost": "Mất mạng; sẽ tự phát lại khi có mạng",
++    "player_fvp": "FVP Player",
++    "player_fvp_desc": "libmdk: try it for sources MPV cannot play; the MPV-only settings (output drivers, decoder) no longer apply",
+     "player_kernel": "Bộ máy phát",
+     "player_mpv": "Trình phát MPV",
++    "player_mpv_desc": "libmpv: the default on desktop, plays most live sources",
+     "player_proxy_group_title": "Proxy nhân trình phát (sửa lỗi lấy luồng trực tiếp)",
+     "playlist": "Danh sách phát",
+     "please_enter_keyword": "Hãy nhập từ khóa",
+diff --git a/apps/pure_live/assets/translations/zh.json b/apps/pure_live/assets/translations/zh.json
+index 465a7ae..aa467a7 100644
+--- a/apps/pure_live/assets/translations/zh.json
++++ b/apps/pure_live/assets/translations/zh.json
+@@ -1019,6 +1019,7 @@
+     "jdlive_restricted_notice": "这场京东直播只能在京东 App 里观看。",
+     "keep_editing": "继续编辑",
+     "kernel_switch": "内核切换",
++    "kernel_switch_hint": "换引擎后，下一次打开直播间或多画面格时生效",
+     "kernel_switch_subtitle": "不同内核影响解码性能与兼容性",
+     "keyword_added_count": "已添加{count}个关键词",
+     "keyword_already_blocked": "“{word}”已经在屏蔽列表里",
+@@ -1802,8 +1803,11 @@
+     "playback_line_details": "线路详细信息",
+     "playback_line_details_desc": "默认关闭；开启后显示视频编码、Raw 和 CDN，关闭后只显示线路1、线路2。",
+     "playback_network_lost": "网络已断开，恢复后会自动重连",
++    "player_fvp": "Fvp播放器",
++    "player_fvp_desc": "基于 libmdk，Mpv 播不了的源可以用它试试；输出驱动、硬件解码器等 Mpv 专属设置不再生效",
+     "player_kernel": "播放器内核",
+     "player_mpv": "Mpv播放器",
++    "player_mpv_desc": "基于 libmpv，桌面端默认，兼容大多数直播源",
+     "player_proxy_group_title": "播放器内核代理 (解决直播流拉取)",
+     "playlist": "播放源",
+     "please_enter_keyword": "请输入关键词",
+diff --git a/apps/pure_live/assets/translations/zh_Hant.json b/apps/pure_live/assets/translations/zh_Hant.json
+index bc91bf4..92095eb 100644
+--- a/apps/pure_live/assets/translations/zh_Hant.json
++++ b/apps/pure_live/assets/translations/zh_Hant.json
+@@ -1019,6 +1019,7 @@
+     "jdlive_restricted_notice": "這場京東直播只能在京東 App 裡觀看。",
+     "keep_editing": "繼續編輯",
+     "kernel_switch": "核心切換",
++    "kernel_switch_hint": "換引擎後，下一次開啟直播間或多畫面格時生效",
+     "kernel_switch_subtitle": "不同核心影響解碼效能與相容性",
+     "keyword_added_count": "已新增{count}個關鍵詞",
+     "keyword_already_blocked": "“{word}”已經在遮蔽列表裡",
+@@ -1802,8 +1803,11 @@
+     "playback_line_details": "線路詳細資訊",
+     "playback_line_details_desc": "預設關閉；開啟後顯示影片編碼、Raw 和 CDN，關閉後只顯示線路1、線路2。",
+     "playback_network_lost": "網路已斷開，恢復後會自動重連",
++    "player_fvp": "Fvp播放器",
++    "player_fvp_desc": "基於 libmdk，Mpv 播不了的直播源可以用它試試；輸出驅動、硬體解碼器等 Mpv 專屬設定不再生效",
+     "player_kernel": "播放器核心",
+     "player_mpv": "Mpv播放器",
++    "player_mpv_desc": "基於 libmpv，桌面端預設，相容大多數直播源",
+     "player_proxy_group_title": "播放器核心代理 (解決直播流拉取)",
+     "playlist": "播放源",
+     "please_enter_keyword": "請輸入關鍵詞",
+diff --git a/apps/pure_live/lib/app/services.dart b/apps/pure_live/lib/app/services.dart
+index 4f4c183..bac26e0 100644
+--- a/apps/pure_live/lib/app/services.dart
++++ b/apps/pure_live/lib/app/services.dart
+@@ -1,6 +1,7 @@
+ import 'dart:async';
+ import 'dart:io';
+ 
++import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+ import 'package:flutter_riverpod/flutter_riverpod.dart';
+ import 'package:flutter_riverpod/misc.dart';
+ import 'package:live_core/live_core.dart';
+@@ -85,12 +86,30 @@ final class AppServices {
+ 
+   /// A new playback session (3.x `GlobalPlayerService.instance.playerManager`;
+   /// the live room uses one, multi-view one per cell). [config] carries the
+-  /// player settings (decoder, output, M9/M13).
+-  PlaybackSession newPlaybackSession({MpvEngineConfig? config}) => PlaybackSession(
+-    engine: () =>
+-        MpvEngine.create(config: config, onBufferingSnapshot: (line) => AppLog.instance.info('playback', line)),
+-    opener: mediaOpener,
+-  );
++  /// player settings (decoder, output, M9/M13), and `Settings.playbackEngine`
++  /// decides which engine the session builds (G01).
++  PlaybackSession newPlaybackSession({MpvEngineConfig? config}) =>
++      PlaybackSession(engine: _engineFactory(config), opener: mediaOpener);
++
++  /// The engine of a new session: libmpv (the default) or fvp's libmdk
++  /// (`Settings.playbackEngine`, read when the session is made, so the next
++  /// room or multi-view cell uses the engine the player page now shows).
++  EngineFactory _engineFactory(MpvEngineConfig? config) {
++    final settings = store.settings;
++    return switch (PlaybackEngineKind.of(settings.get(Settings.playbackEngine))) {
++      PlaybackEngineKind.mpv => () => MpvEngine.create(
++        config: config,
++        onBufferingSnapshot: (line) => AppLog.instance.info('playback', line),
++      ),
++      PlaybackEngineKind.fvp => fvpEngineFactory(
++        FvpEngineConfig(
++          platform: fvpPlatformOf(defaultTargetPlatform) ?? FvpPlatform.linux,
++          hardwareDecoding: settings.get(Settings.enableCodec),
++          volumeGainDb: settings.get(Settings.volumeBoostDb),
++        ),
++      ),
++    };
++  }
+ 
+   /// IPTV imports and syncs; null when IPTV is not set up.
+   final IptvImporter? iptvImporter;
+diff --git a/apps/pure_live/lib/features/live_play/live_play_page.dart b/apps/pure_live/lib/features/live_play/live_play_page.dart
+index 95a2f38..a9504e0 100644
+--- a/apps/pure_live/lib/features/live_play/live_play_page.dart
++++ b/apps/pure_live/lib/features/live_play/live_play_page.dart
+@@ -315,7 +315,7 @@ class _LivePlayPageState extends ConsumerState<LivePlayPage> with SingleTickerPr
+       runtime = adopted;
+     } else {
+       final config = _engineConfig(store.settings);
+-      final key = engineConfigKey(config);
++      final key = engineConfigKey(config, engine: PlaybackEngineKind.of(store.settings.get(Settings.playbackEngine)));
+       // The player the last room left, when it is configured the same way.
+       final session = standby.take(config: key) ?? ref.read(playbackSessionFactoryProvider)(config: config);
+       runtime = _newRuntime(
+@@ -607,9 +607,11 @@ class _LivePlayPageState extends ConsumerState<LivePlayPage> with SingleTickerPr
+     volumeGainDb: settings.get(Settings.volumeBoostDb),
+   );
+ 
+-  /// What decides whether a kept player fits ([PlayerStandby]): every field
+-  /// of [config] (it has no `==`).
+-  static Object engineConfigKey(MpvEngineConfig config) => (
++  /// What decides whether a kept player fits ([PlayerStandby]): the engine
++  /// (G01, an mpv session is never handed to an fvp request) and every
++  /// field of [config] (it has no `==`).
++  static Object engineConfigKey(MpvEngineConfig config, {required PlaybackEngineKind engine}) => (
++    engine,
+     config.platform,
+     config.hardwareDecoding,
+     config.customOutput,
+diff --git a/apps/pure_live/lib/features/settings/playback_tiles.dart b/apps/pure_live/lib/features/settings/playback_tiles.dart
+index 2c2d228..c570758 100644
+--- a/apps/pure_live/lib/features/settings/playback_tiles.dart
++++ b/apps/pure_live/lib/features/settings/playback_tiles.dart
+@@ -283,7 +283,11 @@ class MiniWindowSizeTile extends ConsumerWidget {
+ 
+ /// The player engine: v4 plays everything with mpv (PLAN §4, M7.1), so the
+ /// row shows it and cannot be changed (3.x on computers).
+-class KernelTile extends StatelessWidget {
++/// The engine the player builds (`Settings.playbackEngine`, G01): libmpv,
++/// or libmdk through fvp for the streams mpv cannot play (3.x's "MPV /
++/// FVP" choice on the player page). The session made next — the next room or
++/// multi-view cell — uses the engine picked here.
++class KernelTile extends ConsumerWidget {
+   /// Creates the row.
+   const new({required this.entry, super.key});
+ 
+@@ -291,14 +295,15 @@ class KernelTile extends StatelessWidget {
+   final SettingsEntry entry;
+ 
+   @override
+-  Widget build(BuildContext context) => SettingsLinkRow(
+-    key: entry.rowKey,
++  Widget build(BuildContext context, WidgetRef ref) => SettingChoiceTile<String>(
++    entry: entry,
++    setting: Settings.playbackEngine,
+     icon: AppIcons.settingsKernel,
+-    title: entry.titleText,
+-    subtitle: entry.descriptionText,
+-    value: i18n('player_mpv'),
+-    chevron: false,
+-    onTap: null,
++    hint: i18n('kernel_switch_hint'),
++    options: () => [
++      (value: 'mpv', label: i18n('player_mpv'), description: i18n('player_mpv_desc')),
++      (value: 'fvp', label: i18n('player_fvp'), description: i18n('player_fvp_desc')),
++    ],
+   );
+ }
+ 
+diff --git a/apps/pure_live/lib/features/settings/settings_catalog.dart b/apps/pure_live/lib/features/settings/settings_catalog.dart
+index a58a25f..7651bda 100644
+--- a/apps/pure_live/lib/features/settings/settings_catalog.dart
++++ b/apps/pure_live/lib/features/settings/settings_catalog.dart
+@@ -1585,7 +1585,8 @@ List<SettingsEntry> _build() {
+       'kernel_switch',
+       (context, entry) => KernelTile(entry: entry),
+       desc: 'kernel_switch_subtitle',
+-      keywords: ['mpv', '播放器', '内核'],
++      settings: [Settings.playbackEngine],
++      keywords: ['mpv', 'fvp', '播放器', '内核'],
+     )
+     ..toggle(
+       'hard_stop',
+@@ -2277,6 +2278,7 @@ const List<Setting<Object>> portraitSettings = [
+ /// Settings of the player page's restore: only that page (3.x also reset
+ /// the preferred qualities, U.6c P9).
+ const List<Setting<Object>> kernelSettings = [
++  Settings.playbackEngine,
+   Settings.enableCodec,
+   Settings.playerCompatMode,
+   Settings.useHardStopOnExit,
+diff --git a/apps/pure_live/linux/flutter/generated_plugin_registrant.cc b/apps/pure_live/linux/flutter/generated_plugin_registrant.cc
+index b2a8427..290f774 100644
+--- a/apps/pure_live/linux/flutter/generated_plugin_registrant.cc
++++ b/apps/pure_live/linux/flutter/generated_plugin_registrant.cc
+@@ -9,6 +9,7 @@
+ #include <dynamic_color/dynamic_color_plugin.h>
+ #include <ffmpeg_kit_extended_flutter/ffmpeg_kit_extended_flutter_plugin.h>
+ #include <flutter_webrtc/flutter_web_r_t_c_plugin.h>
++#include <fvp/fvp_plugin.h>
+ #include <media_kit_video/media_kit_video_plugin.h>
+ #include <url_launcher_linux/url_launcher_plugin.h>
+ #include <window_manager/window_manager_plugin.h>
+@@ -23,6 +24,9 @@ void fl_register_plugins(FlPluginRegistry* registry) {
+   g_autoptr(FlPluginRegistrar) flutter_webrtc_registrar =
+       fl_plugin_registry_get_registrar_for_plugin(registry, "FlutterWebRTCPlugin");
+   flutter_web_r_t_c_plugin_register_with_registrar(flutter_webrtc_registrar);
++  g_autoptr(FlPluginRegistrar) fvp_registrar =
++      fl_plugin_registry_get_registrar_for_plugin(registry, "FvpPlugin");
++  fvp_plugin_register_with_registrar(fvp_registrar);
+   g_autoptr(FlPluginRegistrar) media_kit_video_registrar =
+       fl_plugin_registry_get_registrar_for_plugin(registry, "MediaKitVideoPlugin");
+   media_kit_video_plugin_register_with_registrar(media_kit_video_registrar);
+diff --git a/apps/pure_live/linux/flutter/generated_plugins.cmake b/apps/pure_live/linux/flutter/generated_plugins.cmake
+index 68c5489..e09a13f 100644
+--- a/apps/pure_live/linux/flutter/generated_plugins.cmake
++++ b/apps/pure_live/linux/flutter/generated_plugins.cmake
+@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
+   dynamic_color
+   ffmpeg_kit_extended_flutter
+   flutter_webrtc
++  fvp
+   media_kit_video
+   url_launcher_linux
+   window_manager
+diff --git a/apps/pure_live/macos/Flutter/GeneratedPluginRegistrant.swift b/apps/pure_live/macos/Flutter/GeneratedPluginRegistrant.swift
+index 7413c84..f91d93f 100644
+--- a/apps/pure_live/macos/Flutter/GeneratedPluginRegistrant.swift
++++ b/apps/pure_live/macos/Flutter/GeneratedPluginRegistrant.swift
+@@ -14,12 +14,14 @@ import ffmpeg_kit_extended_flutter
+ import file_picker_darwin
+ import flutter_inappwebview_macos
+ import flutter_webrtc
++import fvp
+ import media_kit_video
+ import mobile_scanner
+ import package_info_plus
+ import share_plus
+ import sqflite_darwin
+ import url_launcher_macos
++import video_player_avfoundation
+ import wakelock_plus
+ import window_manager
+ 
+@@ -33,12 +35,14 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
+   FilePickerPlugin.register(with: registry.registrar(forPlugin: "FilePickerPlugin"))
+   InAppWebViewFlutterPlugin.register(with: registry.registrar(forPlugin: "InAppWebViewFlutterPlugin"))
+   FlutterWebRTCPlugin.register(with: registry.registrar(forPlugin: "FlutterWebRTCPlugin"))
++  FvpPlugin.register(with: registry.registrar(forPlugin: "FvpPlugin"))
+   MediaKitVideoPlugin.register(with: registry.registrar(forPlugin: "MediaKitVideoPlugin"))
+   MobileScannerPlugin.register(with: registry.registrar(forPlugin: "MobileScannerPlugin"))
+   FPPPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FPPPackageInfoPlusPlugin"))
+   SharePlusMacosPlugin.register(with: registry.registrar(forPlugin: "SharePlusMacosPlugin"))
+   SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
+   UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
++  VideoPlayerPlugin.register(with: registry.registrar(forPlugin: "VideoPlayerPlugin"))
+   WakelockPlusMacosPlugin.register(with: registry.registrar(forPlugin: "WakelockPlusMacosPlugin"))
+   WindowManagerPlugin.register(with: registry.registrar(forPlugin: "WindowManagerPlugin"))
+ }
+diff --git a/apps/pure_live/test/features/settings/settings_playback_test.dart b/apps/pure_live/test/features/settings/settings_playback_test.dart
+index e2898c8..3f165b0 100644
+--- a/apps/pure_live/test/features/settings/settings_playback_test.dart
++++ b/apps/pure_live/test/features/settings/settings_playback_test.dart
+@@ -331,7 +331,7 @@ void main() {
+   });
+ 
+   group('player page (c8–c11)', () {
+-    testWidgets('four groups; the engine is fixed; takeovers grey rows with the reason', (tester) async {
++    testWidgets('four groups; the engine is a choice (G01); takeovers grey rows with the reason', (tester) async {
+       final h = await pumpSettings(tester, height: 2400, arguments: 'playerKernel');
+       expectInOrder(tester, [
+         for (final title in ['内核', '解码', '网络', 'MPV 高级设置']) _text(title),
+@@ -352,7 +352,27 @@ void main() {
+           settingsRow(id),
+       ]);
+       expect(_inRow('kernel', _text('Mpv播放器')), findsOneWidget);
+-      expect(_rowWidget(tester, 'kernel').onTap, isNull);
++      // G01: the engine row picks mpv or fvp; the session made next uses
++      // the one stored.
++      expect(_rowWidget(tester, 'kernel').onTap, isNotNull);
++      await tapSettings(tester, settingsRow('kernel'));
++      expect(_text('内核切换'), findsOneWidget);
++      expect(find.text('换引擎后，下一次打开直播间或多画面格时生效'), findsOneWidget);
++      expect(
++        find.descendant(
++          of: find.byKey(const ValueKey('settings-choice-mpv')),
++          matching: find.byIcon(AppIcons.selected),
++        ),
++        findsOneWidget,
++      );
++      await tapSettings(tester, find.byKey(const ValueKey('settings-choice-fvp')));
++      expect(h.settings.get(Settings.playbackEngine), 'fvp');
++      expect(_inRow('kernel', _text('Fvp播放器')), findsOneWidget);
++      // Back to the default so the rest of the page reads as before.
++      await tapSettings(tester, settingsRow('kernel'));
++      await tapSettings(tester, find.byKey(const ValueKey('settings-choice-mpv')));
++      expect(h.settings.get(Settings.playbackEngine), 'mpv');
++      expect(_inRow('kernel', _text('Mpv播放器')), findsOneWidget);
+       expect(_inRow('player_proxy_link', _text('未开启')), findsOneWidget);
+       expect(find.byKey(const ValueKey('settings-mpv-docs')), findsOneWidget);
+       // The drivers wait for "custom drivers".
+diff --git a/apps/pure_live/windows/flutter/generated_plugin_registrant.cc b/apps/pure_live/windows/flutter/generated_plugin_registrant.cc
+index a656706..afaa7d8 100644
+--- a/apps/pure_live/windows/flutter/generated_plugin_registrant.cc
++++ b/apps/pure_live/windows/flutter/generated_plugin_registrant.cc
+@@ -12,6 +12,7 @@
+ #include <ffmpeg_kit_extended_flutter/ffmpeg_kit_extended_flutter_plugin.h>
+ #include <flutter_inappwebview_windows/flutter_inappwebview_windows_plugin_c_api.h>
+ #include <flutter_webrtc/flutter_web_r_t_c_plugin.h>
++#include <fvp/fvp_plugin_c_api.h>
+ #include <media_kit_video/media_kit_video_plugin_c_api.h>
+ #include <share_plus/share_plus_windows_plugin_c_api.h>
+ #include <url_launcher_windows/url_launcher_windows.h>
+@@ -30,6 +31,8 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
+       registry->GetRegistrarForPlugin("FlutterInappwebviewWindowsPluginCApi"));
+   FlutterWebRTCPluginRegisterWithRegistrar(
+       registry->GetRegistrarForPlugin("FlutterWebRTCPlugin"));
++  FvpPluginCApiRegisterWithRegistrar(
++      registry->GetRegistrarForPlugin("FvpPluginCApi"));
+   MediaKitVideoPluginCApiRegisterWithRegistrar(
+       registry->GetRegistrarForPlugin("MediaKitVideoPluginCApi"));
+   SharePlusWindowsPluginCApiRegisterWithRegistrar(
+diff --git a/apps/pure_live/windows/flutter/generated_plugins.cmake b/apps/pure_live/windows/flutter/generated_plugins.cmake
+index 618a19b..a4f4cee 100644
+--- a/apps/pure_live/windows/flutter/generated_plugins.cmake
++++ b/apps/pure_live/windows/flutter/generated_plugins.cmake
+@@ -9,6 +9,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
+   ffmpeg_kit_extended_flutter
+   flutter_inappwebview_windows
+   flutter_webrtc
++  fvp
+   media_kit_video
+   share_plus
+   url_launcher_windows
+diff --git a/packages/live_player/lib/live_player.dart b/packages/live_player/lib/live_player.dart
+index bff9c2c..5dc5677 100644
+--- a/packages/live_player/lib/live_player.dart
++++ b/packages/live_player/lib/live_player.dart
+@@ -7,6 +7,7 @@ export 'src/diagnostics.dart';
+ export 'src/engine.dart';
+ export 'src/engine_profile.dart';
+ export 'src/frame_rate.dart';
++export 'src/fvp_engine.dart';
+ export 'src/mpv_engine.dart';
+ export 'src/mpv_options.dart';
+ export 'src/playback_stats.dart';
+diff --git a/packages/live_player/lib/src/engine.dart b/packages/live_player/lib/src/engine.dart
+index 4421012..a244bdc 100644
+--- a/packages/live_player/lib/src/engine.dart
++++ b/packages/live_player/lib/src/engine.dart
+@@ -1,5 +1,7 @@
+ import 'dart:async';
++import 'dart:ui' show Size;
+ 
++import 'package:flutter/foundation.dart' show ValueListenable;
+ import 'package:live_media/live_media.dart';
+ import 'package:meta/meta.dart';
+ 
+@@ -208,9 +210,39 @@ final class EngineError extends EngineEvent {
+   String toString() => 'EngineError($error)';
+ }
+ 
++/// Which engine a session creates (`Settings.playbackEngine`, G01).
++enum PlaybackEngineKind {
++  /// libmpv through the media_kit fork in `third_party/`: the default on
++  /// every platform, and what 3.x used on desktop.
++  mpv,
++
++  /// libmdk through fvp's backend player API: an alternative for streams
++  /// whose decoder mpv's bundle cannot play smoothly (3.x's `fvp`
++  /// adapter, G01).
++  fvp;
++
++  /// The kind stored as [id] (`mpv`, `fvp`); [mpv] for anything else, so a
++  /// repaired setting or a 3.x backup never leaves the app without a
++  /// player.
++  static PlaybackEngineKind of(Object? id) => values.firstWhere((kind) => kind.name == id, orElse: () => mpv);
++}
++
++/// An engine that draws into a Flutter texture (`Texture`), as fvp does,
++/// instead of through a package video widget (media_kit's `Video`).
++/// `LiveVideoView` draws its picture with the view's fit, fill and
++/// alignment.
++abstract interface class TextureVideoHost {
++  /// The texture the engine draws into; null while it has no picture.
++  ValueListenable<int?> get textureId;
++
++  /// The picture's size (rotation applied), for the aspect ratio; null
++  /// while it is unknown.
++  ValueListenable<Size?> get frameSize;
++}
++
+ /// The engine contract the session drives (3.x's `UnifiedPlayer`, reduced to
+-/// what the one mpv engine needs). Implementations: `MpvEngine`, and fakes in
+-/// tests.
++/// what the one mpv engine needs). Implementations: `MpvEngine`, `FvpEngine`
++/// and fakes in tests.
+ abstract interface class PlayerEngine {
+   /// Events of every source, in arrival order.
+   Stream<EngineEvent> get events;
+diff --git a/packages/live_player/lib/src/fvp_engine.dart b/packages/live_player/lib/src/fvp_engine.dart
+new file mode 100644
+index 0000000..24b9b83
+--- /dev/null
++++ b/packages/live_player/lib/src/fvp_engine.dart
+@@ -0,0 +1,521 @@
++import 'dart:async';
++import 'dart:math' as math;
++import 'dart:ui' show Size;
++
++import 'package:flutter/foundation.dart';
++import 'package:fvp/mdk.dart' as mdk;
++import 'package:live_media/live_media.dart';
++import 'package:live_player/src/engine.dart';
++import 'package:live_player/src/playback_stats.dart';
++
++/// The platforms fvp runs on, for its decoder names.
++enum FvpPlatform {
++  /// Android.
++  android,
++
++  /// iOS.
++  ios,
++
++  /// Windows.
++  windows,
++
++  /// Linux.
++  linux,
++
++  /// macOS.
++  macos,
++}
++
++/// The [FvpPlatform] of a Flutter [platform]; null on Fuchsia.
++FvpPlatform? fvpPlatformOf(TargetPlatform platform) => switch (platform) {
++  TargetPlatform.android => FvpPlatform.android,
++  TargetPlatform.iOS => FvpPlatform.ios,
++  TargetPlatform.windows => FvpPlatform.windows,
++  TargetPlatform.linux => FvpPlatform.linux,
++  TargetPlatform.macOS => FvpPlatform.macos,
++  TargetPlatform.fuchsia => null,
++};
++
++/// How `FvpEngine` configures libmdk (the subset of the player settings the
++/// second engine reads, G01). The mpv-only settings (output drivers, the
++/// custom `hwdec` name, RTX VSR, compatibility mode) have no meaning here.
++@immutable
++final class FvpEngineConfig {
++  /// Creates a configuration; the defaults are 3.x's default settings.
++  const new({this.platform = FvpPlatform.android, this.hardwareDecoding = true, this.volumeGainDb = 0});
++
++  /// The platform the decoder names are for.
++  final FvpPlatform platform;
++
++  /// 3.x's "硬件解码" (`enableCodec`): libmdk's hardware decoder first.
++  final bool hardwareDecoding;
++
++  /// "音量增强": gain in dB applied on top of the volume; 0 leaves the
++  /// sound alone. libmdk has no mpv `volume-gain`, so the gain multiplies
++  /// the volume of this engine instead.
++  final int volumeGainDb;
++
++  /// The largest [volumeGainDb] (mpv's own `volume-gain-max` is 12).
++  static const maxVolumeGainDb = 12;
++}
++
++/// The video decoders libmdk tries, in order: the platform's hardware one
++/// first when decoding by hardware, then FFmpeg's software decoders (so a
++/// profile the hardware decoder rejects still plays; 3.x's own fvp adapter
++/// relied on the same fallback).
++List<String> fvpVideoDecoders(FvpPlatform platform, {required bool hardwareDecoding}) {
++  if (!hardwareDecoding) return const ['FFmpeg'];
++  final hardware = switch (platform) {
++    FvpPlatform.android => 'MediaCodec',
++    FvpPlatform.ios || FvpPlatform.macos => 'VideoToolbox',
++    FvpPlatform.windows => 'D3D11',
++    FvpPlatform.linux => 'VAAPI',
++  };
++  return [hardware, 'FFmpeg'];
++}
++
++/// The request headers as libmdk's `avio.headers` value: one
++/// `Name: value\r\n` line each; empty for none.
++String fvpHeaderLines(Map<String, String> headers) =>
++    [for (final MapEntry(:key, :value) in headers.entries) '$key: $value\r\n'].join();
++
++/// The displayed size of a video stream: the sample aspect ratio applied to
++/// the coded height, then a quarter turn swapped (3.x's
++/// `resolveVideoParamsDisplaySize`, which mpv reports the same way).
++({int width, int height})? fvpDisplaySizeOf({
++  required int width,
++  required int height,
++  double par = 1,
++  int rotation = 0,
++}) {
++  if (width <= 0 || height <= 0) return null;
++  var displayWidth = width;
++  var displayHeight = par > 0 && par != 1 ? (height / par).round() : height;
++  if (displayHeight <= 0) displayHeight = height;
++  if (rotation % 180 == 90) (displayWidth, displayHeight) = (displayHeight, displayWidth);
++  return (width: displayWidth, height: displayHeight);
++}
++
++/// The fvp (libmdk) [PlayerEngine]: the second engine of the player page
++/// (`Settings.playbackEngine`, G01), drawn through a Flutter texture
++/// ([TextureVideoHost]) instead of media_kit's `Video`.
++///
++/// - Each open sets the request headers (`avio.headers`), the proxy
++///   (`avio.http_proxy`, `avformat.http_proxy`) and the decoder order, then
++///   loads the media with its external audio (a split stream's rendition,
++///   `setMedia(type: audio)`) and prepares it at the start position. A
++///   failed prepare throws, which the session treats as the source failing.
++/// - libmdk reports playback state, media status (buffering, end, invalid)
++///   and events; the position is read four times a second, as the session
++///   judges a live source by whether it moves.
++/// - Audio-only mode disables the video track in the native player instead
++///   of reopening, as mpv turns its video output off.
++/// - Windows reports no presented frames here (`reportsFrames` false), so
++///   the frame watchdog does not apply to this engine.
++final class FvpEngine implements PlayerEngine, PlaybackRate, PlaybackStatsSource, VolumeGainControl, TextureVideoHost {
++  new _(this.player, this.config) {
++    _bind();
++  }
++
++  /// Creates the native player and its event bindings. Needs a Flutter
++  /// binding and libmdk for this platform (the fvp plugin's build hook
++  /// provides it).
++  static Future<FvpEngine> create({FvpEngineConfig? config}) async {
++    final resolved = config ?? const FvpEngineConfig();
++    try {
++      return FvpEngine._(mdk.Player(), resolved).._configure();
++    } on Object catch (error, stack) {
++      throw PlayerException(
++        message: 'The fvp engine could not start: $error',
++        type: PlayerErrorType.native,
++        code: 'fvp_engine_create',
++        error: error,
++        stackTrace: stack,
++      );
++    }
++  }
++
++  /// The libmdk player.
++  final mdk.Player player;
++
++  /// Configuration.
++  final FvpEngineConfig config;
++
++  final StreamController<EngineEvent> _events = StreamController.broadcast(sync: true);
++  final List<StreamSubscription<Object?>> _subscriptions = [];
++  final ValueNotifier<int?> _textureId = ValueNotifier<int?>(null);
++  final ValueNotifier<Size?> _frameSize = ValueNotifier<Size?>(null);
++
++  Timer? _ticker;
++  ({int width, int height})? _lastSize;
++  var _buffering = false;
++  var _hasSource = false;
++  var _audioOnly = false;
++  var _externalAudio = false;
++  var _disposed = false;
++  var _opens = 0;
++  var _volume = 1.0;
++  var _gainDb = 0;
++
++  @override
++  Stream<EngineEvent> get events => _events.stream;
++
++  @override
++  bool get reportsFrames => false;
++
++  @override
++  ValueListenable<int?> get textureId => _textureId;
++
++  @override
++  ValueListenable<Size?> get frameSize => _frameSize;
++
++  void _add(EngineEvent event) {
++    if (!_disposed) _events.add(event);
++  }
++
++  /// The settings that stay on this player between sources.
++  void _configure() {
++    _gainDb = config.volumeGainDb.clamp(-FvpEngineConfig.maxVolumeGainDb, FvpEngineConfig.maxVolumeGainDb);
++    // A live line that drops is reconnected by libmdk itself; the session
++    // still sees the stall through the position and its buffering flags.
++    player
++      ..setProperty('avio.reconnect', '1')
++      ..setProperty('avio.reconnect_delay_max', '7');
++  }
++
++  void _bind() {
++    _subscriptions
++      ..add(
++        player.onStateChanged.listen((event) {
++          if (_disposed) return;
++          switch (event.newValue) {
++            case mdk.PlaybackState.playing:
++              _add(const EnginePlaying(playing: true));
++            case mdk.PlaybackState.paused:
++              _add(const EnginePlaying(playing: false));
++            case mdk.PlaybackState.stopped || mdk.PlaybackState.notRunning || mdk.PlaybackState.running:
++              break;
++          }
++        }),
++      )
++      ..add(
++        player.onMediaStatus.listen((event) {
++          if (_disposed) return;
++          _onStatus(event.newValue);
++        }),
++      )
++      ..add(
++        player.onEvent.listen((event) {
++          if (_disposed) return;
++          // The first decoded frame tells the picture's size when the
++          // probe did not (libmdk fills `mediaInfo.video` at load).
++          if (event.category == 'decoder.video') _emitSize();
++        }),
++      );
++  }
++
++  void _onStatus(mdk.MediaStatus status) {
++    if (status.test(mdk.MediaStatus.invalid) && _hasSource) {
++      _hasSource = false;
++      _stopTicker();
++      _add(
++        const EngineError(
++          PlayerException(
++            message: 'libmdk rejected the source',
++            type: PlayerErrorType.source,
++            code: 'fvp_source_invalid',
++          ),
++        ),
++      );
++      return;
++    }
++    if (status.test(mdk.MediaStatus.end)) _add(const EngineCompleted());
++    final buffering = status.test(mdk.MediaStatus.buffering) || status.test(mdk.MediaStatus.stalled);
++    if (buffering != _buffering) {
++      _buffering = buffering;
++      _add(EngineBuffering(buffering: buffering));
++    }
++    if (status.test(mdk.MediaStatus.loaded)) _emitSize();
++  }
++
++  /// Reports the picture's size once per open when it is known.
++  void _emitSize() {
++    if (_disposed) return;
++    final ({int width, int height})? size;
++    try {
++      final streams = player.mediaInfo.video;
++      if (streams == null || streams.isEmpty) return;
++      final stream = streams.first;
++      size = fvpDisplaySizeOf(
++        width: stream.codec.width,
++        height: stream.codec.height,
++        par: stream.codec.par,
++        rotation: stream.rotation,
++      );
++    } on Object {
++      return;
++    }
++    if (size == null || size == _lastSize) return;
++    _lastSize = size;
++    _frameSize.value = Size(size.width.toDouble(), size.height.toDouble());
++    _add(EngineVideoSize(size.width, size.height));
++  }
++
++  int _durationMs() {
++    try {
++      return player.mediaInfo.duration;
++    } on Object {
++      return 0;
++    }
++  }
++
++  double? _videoFrameRate() {
++    try {
++      final streams = player.mediaInfo.video;
++      final fps = streams == null || streams.isEmpty ? 0.0 : streams.first.codec.frameRate;
++      return fps > 0 && fps.isFinite ? fps : null;
++    } on Object {
++      return null;
++    }
++  }
++
++  @override
++  Future<void> open(EngineMedia media) async {
++    final open = ++_opens;
++    _hasSource = false;
++    _buffering = false;
++    _lastSize = null;
++    _frameSize.value = null;
++    _textureId.value = null;
++    try {
++      _applyProperties(media);
++      player.media = media.uri.toString();
++      final audio = media.audio;
++      if (audio != null || _externalAudio) {
++        // A split stream's sound (A17.6): an external audio source of this
++        // player, fetched with the same headers and proxy as the video.
++        player.setMedia(audio?.uri.toString() ?? '', mdk.MediaType.audio);
++        _externalAudio = audio != null;
++      }
++      final start = media.start?.inMilliseconds ?? 0;
++      final result = await player.prepare(position: math.max(0, start));
++      if (_disposed || open != _opens) return;
++      if (result < 0) {
++        throw PlayerException(
++          message: 'libmdk could not prepare the source ($result)',
++          type: PlayerErrorType.source,
++          code: 'fvp_open_${result.clamp(-99, -1)}',
++        );
++      }
++      await _setVideoTrack(enabled: !media.audioOnly);
++      if (_disposed || open != _opens) return;
++      _emitSize();
++      if (!media.audioOnly) await _createTexture(open);
++      if (_disposed || open != _opens) return;
++      _hasSource = true;
++      _applyVolume();
++      player.state = mdk.PlaybackState.playing;
++      final duration = _durationMs();
++      if (media.onDemand && duration > 0) _add(EngineDuration(Duration(milliseconds: duration)));
++      final fps = _videoFrameRate();
++      if (fps != null) _add(EngineFrameRate(fps));
++      _startTicker();
++    } on PlayerException {
++      rethrow;
++    } on Object catch (error, stack) {
++      _hasSource = false;
++      _stopTicker();
++      throw PlayerException(
++        message: 'libmdk could not open the source: $error',
++        type: PlayerErrorType.source,
++        code: 'fvp_open_failed',
++        error: error,
++        stackTrace: stack,
++      );
++    }
++  }
++
++  /// The per-open properties: headers, proxy and the decoder order.
++  void _applyProperties(EngineMedia media) {
++    player
++      ..setProperty('avio.headers', media.headers.isEmpty ? '' : fvpHeaderLines(media.headers))
++      ..setProperty('avio.http_proxy', media.proxyUrl)
++      ..setProperty('avformat.http_proxy', media.proxyUrl)
++      ..videoDecoders = fvpVideoDecoders(
++        config.platform,
++        hardwareDecoding: media.decoder == DecoderMode.hardware && config.hardwareDecoding,
++      );
++  }
++
++  /// Creates the texture for this open's picture (libmdk sizes it to the
++  /// video's own frame, so the view keeps the aspect ratio).
++  Future<void> _createTexture(int open) async {
++    final id = await player.updateTexture();
++    if (id < 0) return;
++    if (_disposed || open != _opens) {
++      // A newer open took over while the texture was being made: drop it
++      // without showing the old picture.
++      await _releaseTexture();
++      return;
++    }
++    _textureId.value = id;
++  }
++
++  Future<void> _releaseTexture() async {
++    _textureId.value = null;
++    if ((player.textureId.value ?? -1) < 0) return;
++    try {
++      await player.updateTexture(width: -1);
++    } on Object {
++      // Native teardown may refuse; the player keeps the texture until it
++      // is disposed.
++    }
++  }
++
++  /// Turns the native player's video track off or on without reopening, as
++  /// mpv turns its video output off (`audio-only` mode).
++  Future<void> _setVideoTrack({required bool enabled}) async {
++    if (enabled == !_audioOnly) return;
++    // Turning video off drops the picture, and back on re-reports its size
++    // even when it is the same as before.
++    if (!enabled) {
++      await _releaseTexture();
++      _lastSize = null;
++    }
++    player.setActiveTracks(mdk.MediaType.video, enabled ? const [0] : const []);
++    _audioOnly = !enabled;
++  }
++
++  /// Reports the position of the source four times a second (mpv's
++  /// `time-pos` stream, which the session uses to tell moving playback from
++  /// a stall).
++  void _startTicker() {
++    _stopTicker();
++    _ticker = Timer.periodic(const Duration(milliseconds: 250), (_) {
++      if (_disposed || !_hasSource) return;
++      try {
++        _add(EnginePosition(Duration(milliseconds: player.position)));
++      } on Object {
++        _stopTicker();
++      }
++    });
++  }
++
++  void _stopTicker() {
++    _ticker?.cancel();
++    _ticker = null;
++  }
++
++  @override
++  Future<void> play() async {
++    if (_disposed) return;
++    player.state = mdk.PlaybackState.playing;
++  }
++
++  @override
++  Future<void> pause() async {
++    if (_disposed) return;
++    player.state = mdk.PlaybackState.paused;
++  }
++
++  @override
++  Future<void> stop() async {
++    _opens++;
++    _hasSource = false;
++    _buffering = false;
++    _lastSize = null;
++    _stopTicker();
++    if (_disposed) return;
++    player.state = mdk.PlaybackState.stopped;
++    await _releaseTexture();
++    _frameSize.value = null;
++  }
++
++  @override
++  Future<void> seek(Duration position) async {
++    if (_disposed || !_hasSource) return;
++    await player.seek(position: math.max(0, position.inMilliseconds));
++  }
++
++  @override
++  Future<void> setVolume(double volume) async {
++    _volume = volume.clamp(0, 1).toDouble();
++    _applyVolume();
++  }
++
++  @override
++  Future<void> setVolumeGainDb(int? decibels) async {
++    final gain = decibels?.clamp(-FvpEngineConfig.maxVolumeGainDb, FvpEngineConfig.maxVolumeGainDb);
++    _gainDb = gain ?? config.volumeGainDb;
++    _applyVolume();
++  }
++
++  /// libmdk multiplies the source volume; the gain is folded into it (mpv
++  /// keeps them apart).
++  void _applyVolume() {
++    if (_disposed) return;
++    final gain = math.pow(10, _gainDb / 20).toDouble();
++    player.volume = (_volume * gain).clamp(0, 8).toDouble();
++  }
++
++  @override
++  Future<void> setRate(double rate) async {
++    if (_disposed) return;
++    player.playbackRate = rate.clamp(0.25, 4).toDouble();
++  }
++
++  @override
++  Future<void> setAudioOnly({required bool enabled}) async {
++    if (_disposed || !_hasSource) return;
++    await _setVideoTrack(enabled: !enabled);
++    if (enabled) return;
++    _emitSize();
++    await _createTexture(_opens);
++  }
++
++  @override
++  Future<PlaybackStats> readStats() async {
++    if (_disposed) return const PlaybackStats();
++    try {
++      final info = player.mediaInfo;
++      final video = info.video?.isEmpty ?? true ? null : info.video!.first;
++      final audio = info.audio?.isEmpty ?? true ? null : info.audio!.first;
++      return PlaybackStats(
++        width: video?.codec.width,
++        height: video?.codec.height,
++        videoFormat: video?.codec.codec,
++        videoCodec: video?.codec.codec,
++        encoder: video?.metadata['encoder'] ?? audio?.metadata['encoder'],
++        sampleRate: audio?.codec.sampleRate,
++        channels: audio?.codec.channels,
++        audioBitrate: audio?.codec.bitRate,
++        audioCodec: audio?.codec.codec,
++      );
++    } on Object {
++      return const PlaybackStats();
++    }
++  }
++
++  @override
++  Future<void> dispose() async {
++    if (_disposed) return;
++    _disposed = true;
++    _opens++;
++    _stopTicker();
++    for (final subscription in _subscriptions) {
++      await subscription.cancel();
++    }
++    try {
++      await player.disposeAsync();
++    } on Object {
++      // The native player may already be gone.
++    }
++    _textureId.dispose();
++    _frameSize.dispose();
++    await _events.close();
++  }
++}
++
++/// An [EngineFactory] creating [FvpEngine]s with [config].
++EngineFactory fvpEngineFactory([FvpEngineConfig? config]) =>
++    () => FvpEngine.create(config: config);
+diff --git a/packages/live_player/lib/src/video_view.dart b/packages/live_player/lib/src/video_view.dart
+index 143dea9..b57126b 100644
+--- a/packages/live_player/lib/src/video_view.dart
++++ b/packages/live_player/lib/src/video_view.dart
+@@ -1,6 +1,7 @@
+ import 'dart:async';
+ 
+ import 'package:flutter/widgets.dart';
++import 'package:live_player/src/engine.dart';
+ import 'package:live_player/src/mpv_engine.dart';
+ import 'package:live_player/src/screen_wake.dart';
+ import 'package:live_player/src/session.dart';
+@@ -124,7 +125,15 @@ class _LiveVideoViewState extends State<LiveVideoView> {
+   @override
+   Widget build(BuildContext context) {
+     final engine = widget.session.engine;
+-    if (engine is! MpvEngine) return ColoredBox(color: widget.fill, child: const SizedBox.expand());
++    if (engine is MpvEngine) return _mpvVideo(engine);
++    // Engines that draw into a texture (fvp) keep the same box, fit, fill
++    // and alignment as media_kit's `Video`; the texture's own size is the
++    // picture's, so the fit is done here.
++    if (engine case final TextureVideoHost host) return _textureVideo(host);
++    return ColoredBox(color: widget.fill, child: const SizedBox.expand());
++  }
++
++  Widget _mpvVideo(MpvEngine engine) {
+     final video = Video(
+       // VideoState binds player streams in initState. A replacement engine
+       // must not inherit the old player's width/height visibility listeners.
+@@ -147,4 +156,34 @@ class _LiveVideoViewState extends State<LiveVideoView> {
+       },
+     );
+   }
++
++  /// The picture of a [TextureVideoHost]: a `Texture` of the engine's own
++  /// size, scaled into the box by [LiveVideoView.fit] and placed by
++  /// [LiveVideoView.alignment]; the fill shows while it has no texture.
++  Widget _textureVideo(TextureVideoHost host) => ColoredBox(
++    color: widget.fill,
++    child: SizedBox.expand(
++      child: ValueListenableBuilder<int?>(
++        valueListenable: host.textureId,
++        builder: (context, id, _) {
++          if (id == null || id < 0) return const SizedBox.expand();
++          return FittedBox(
++            fit: widget.fit,
++            alignment: widget.alignment,
++            clipBehavior: Clip.hardEdge,
++            child: ValueListenableBuilder<Size?>(
++              valueListenable: host.frameSize,
++              builder: (context, size, _) => SizedBox(
++                // Before the size is known the picture is drawn at its own
++                // size and clipped; it appears within a frame.
++                width: size?.width ?? 16,
++                height: size?.height ?? 16,
++                child: Texture(textureId: id),
++              ),
++            ),
++          );
++        },
++      ),
++    ),
++  );
+ }
+diff --git a/packages/live_player/pubspec.yaml b/packages/live_player/pubspec.yaml
+index 2bda176..893cdeb 100644
+--- a/packages/live_player/pubspec.yaml
++++ b/packages/live_player/pubspec.yaml
+@@ -14,6 +14,10 @@ dependencies:
+   clock: ^1.1.3
+   flutter:
+     sdk: flutter
++  # The second playback engine (G01.3): libmdk through the fvp backend
++  # player API (`package:fvp/mdk.dart`), BSD-3-Clause wrapper; the libmdk
++  # binaries come from the plugin's build hook at build time.
++  fvp: ^0.40.0
+   live_core: any
+   live_media: any
+   live_net: any
+diff --git a/packages/live_player/test/fvp_engine_test.dart b/packages/live_player/test/fvp_engine_test.dart
+new file mode 100644
+index 0000000..ba4294f
+--- /dev/null
++++ b/packages/live_player/test/fvp_engine_test.dart
+@@ -0,0 +1,92 @@
++import 'package:flutter/widgets.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:live_core/live_core.dart';
++import 'package:live_media/live_media.dart';
++import 'package:live_player/live_player.dart';
++
++import 'support/fake_engine.dart';
++
++void main() {
++  group('G01: the fvp engine', () {
++    test('the decoder order: the platform hardware one first, FFmpeg behind it', () {
++      expect(fvpVideoDecoders(FvpPlatform.android, hardwareDecoding: true), ['MediaCodec', 'FFmpeg']);
++      expect(fvpVideoDecoders(FvpPlatform.ios, hardwareDecoding: true), ['VideoToolbox', 'FFmpeg']);
++      expect(fvpVideoDecoders(FvpPlatform.macos, hardwareDecoding: true), ['VideoToolbox', 'FFmpeg']);
++      expect(fvpVideoDecoders(FvpPlatform.windows, hardwareDecoding: true), ['D3D11', 'FFmpeg']);
++      expect(fvpVideoDecoders(FvpPlatform.linux, hardwareDecoding: true), ['VAAPI', 'FFmpeg']);
++      // 3.x's "硬件解码" off decodes with FFmpeg alone.
++      expect(fvpVideoDecoders(FvpPlatform.android, hardwareDecoding: false), ['FFmpeg']);
++    });
++
++    test('the headers as libmdk reads them', () {
++      expect(fvpHeaderLines(const {}), '');
++      expect(
++        fvpHeaderLines(const {'User-Agent': 'PureLive/5.0', 'Referer': 'https://live.bilibili.com'}),
++        'User-Agent: PureLive/5.0\r\nReferer: https://live.bilibili.com\r\n',
++      );
++    });
++
++    test('the picture size: the sample aspect ratio, then a quarter turn', () {
++      expect(fvpDisplaySizeOf(width: 1920, height: 1080), (width: 1920, height: 1080));
++      // Anamorphic SD: 720x480 stored, 16:9 shown.
++      expect(fvpDisplaySizeOf(width: 720, height: 480, par: 1.5), (width: 720, height: 320));
++      // A phone holding the camera upright: a 90 turn swaps the sides.
++      expect(fvpDisplaySizeOf(width: 1920, height: 1080, rotation: 90), (width: 1080, height: 1920));
++      expect(fvpDisplaySizeOf(width: 1920, height: 1080, rotation: 180), (width: 1920, height: 1080));
++      // Not probed yet.
++      expect(fvpDisplaySizeOf(width: 0, height: 1080), isNull);
++      expect(fvpDisplaySizeOf(width: 1920, height: 0), isNull);
++    });
++
++    test('the stored engine name, and mpv for anything else', () {
++      expect(PlaybackEngineKind.of('fvp'), PlaybackEngineKind.fvp);
++      expect(PlaybackEngineKind.of('mpv'), PlaybackEngineKind.mpv);
++      expect(PlaybackEngineKind.of('ijk'), PlaybackEngineKind.mpv);
++      expect(PlaybackEngineKind.of(null), PlaybackEngineKind.mpv);
++      expect(PlaybackEngineKind.fvp.name, 'fvp');
++    });
++
++    testWidgets('the view draws the engine texture at the picture size with the fit', (tester) async {
++      final engine = TextureFakeEngine();
++      final session = PlaybackSession(engine: () async => engine, opener: MediaOpener());
++      await session.open(
++        PlaybackRequest(
++          site: 'douyu',
++          plan: PlaybackPlan.of(LivePlayUrlResolution.lines(const [LivePlayLine('https://a.example/1.flv')])),
++        ),
++      );
++      await tester.pumpWidget(
++        Directionality(
++          textDirection: TextDirection.ltr,
++          child: LiveVideoView(session: session, fit: BoxFit.cover, alignment: Alignment.topCenter),
++        ),
++      );
++      // The engine has no picture yet: the fill only, as before the open.
++      expect(find.byType(Texture), findsNothing);
++
++      engine.frameSize.value = const Size(1080, 1920);
++      engine.textureId.value = 7;
++      await tester.pump();
++
++      final texture = tester.widget<Texture>(find.byType(Texture));
++      expect(texture.textureId, 7);
++      final box = tester.widget<SizedBox>(
++        find.ancestor(of: find.byType(Texture), matching: find.byType(SizedBox)).first,
++      );
++      expect(box.width, 1080);
++      expect(box.height, 1920);
++      final fitted = tester.widget<FittedBox>(find.byType(FittedBox));
++      expect(fitted.fit, BoxFit.cover);
++      expect(fitted.alignment, Alignment.topCenter);
++
++      // A stopped or disposed engine's picture goes back to the fill.
++      engine.textureId.value = null;
++      await tester.pump();
++      expect(find.byType(Texture), findsNothing);
++
++      await session.stop();
++      await tester.pump();
++      await session.dispose();
++    });
++  });
++}
+diff --git a/packages/live_player/test/support/fake_engine.dart b/packages/live_player/test/support/fake_engine.dart
+index 1b788a1..39a7a98 100644
+--- a/packages/live_player/test/support/fake_engine.dart
++++ b/packages/live_player/test/support/fake_engine.dart
+@@ -1,5 +1,7 @@
+ import 'dart:async';
++import 'dart:ui' show Size;
+ 
++import 'package:flutter/foundation.dart' show ValueNotifier;
+ import 'package:live_player/live_player.dart';
+ 
+ /// A scripted [PlayerEngine]: records every call; [onOpen] decides what an
+@@ -94,3 +96,14 @@ final class FakeEngine implements PlayerEngine {
+     await _events.close();
+   }
+ }
++
++/// A [FakeEngine] that draws into a texture, as fvp does ([TextureVideoHost]):
++/// tests of the view's texture path set [textureId] and [frameSize] as the
++/// engine would.
++final class TextureFakeEngine extends FakeEngine implements TextureVideoHost {
++  @override
++  final ValueNotifier<int?> textureId = ValueNotifier<int?>(null);
++
++  @override
++  final ValueNotifier<Size?> frameSize = ValueNotifier<Size?>(null);
++}
+diff --git a/packages/live_store/lib/src/settings/settings.dart b/packages/live_store/lib/src/settings/settings.dart
+index 6f320ae..15ee473 100644
+--- a/packages/live_store/lib/src/settings/settings.dart
++++ b/packages/live_store/lib/src/settings/settings.dart
+@@ -354,6 +354,16 @@ abstract final class Settings {
+   /// 3.x's player engine; v4 plays everything with mpv, kept for backups.
+   static const videoPlayerKey = StringSetting('videoPlayerKey', section: 'player', defaultValue: 'mpv');
+ 
++  /// Which engine the player builds (G01.3): `mpv` (libmpv, the default) or
++  /// `fvp` (libmdk through fvp), chosen on the player page and read when a
++  /// session is created.
++  static const playbackEngine = StringSetting(
++    'playbackEngine',
++    section: 'player',
++    defaultValue: 'mpv',
++    allowed: {'mpv', 'fvp'},
++  );
++
+   /// Preferred quality name on Wi-Fi (`原画`, `蓝光8M`, `蓝光4M`, `超清`, `流畅`).
+   static const preferResolution = StringSetting(
+     'preferResolution',
+@@ -2137,6 +2147,7 @@ abstract final class Settings {
+     danmakuFontFamilyFileName,
+     videoFitIndex,
+     videoPlayerKey,
++    playbackEngine,
+     preferResolution,
+     preferResolutionCellular,
+     enableCodec,
+diff --git a/packages/live_store/test/settings_defaults_test.dart b/packages/live_store/test/settings_defaults_test.dart
+index cbe5840..7cfc5a0 100644
+--- a/packages/live_store/test/settings_defaults_test.dart
++++ b/packages/live_store/test/settings_defaults_test.dart
+@@ -85,6 +85,7 @@ const Map<String, Object> v3Defaults = {
+   'danmakuFontFamilyFileName': '',
+   'videoFitIndex': 0,
+   'videoPlayerKey': 'mpv',
++  'playbackEngine': 'mpv',
+   'preferResolution': '原画',
+   'preferResolutionCellular': '原画',
+   'enableCodec': true,
+diff --git a/pubspec.lock b/pubspec.lock
+index 73a0c2b..6bf0c81 100644
+--- a/pubspec.lock
++++ b/pubspec.lock
+@@ -273,6 +273,14 @@ packages:
+       url: "https://pub.dev"
+     source: hosted
+     version: "3.0.8"
++  csslib:
++    dependency: transitive
++    description:
++      name: csslib
++      sha256: "09bad715f418841f976c77db72d5398dc1253c21fb9c0c7f0b0b985860b2d58e"
++      url: "https://pub.dev"
++    source: hosted
++    version: "1.0.2"
+   cupertino_ui:
+     dependency: transitive
+     description:
+@@ -557,6 +565,14 @@ packages:
+     description: flutter
+     source: sdk
+     version: "0.0.0"
++  fvp:
++    dependency: transitive
++    description:
++      name: fvp
++      sha256: "1ee9df424ace41988c2e10ed01f35b170d9ef00c62330acd1b97f007ca56ec99"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.40.0"
+   glob:
+     dependency: transitive
+     description:
+@@ -589,6 +605,14 @@ packages:
+       url: "https://pub.dev"
+     source: hosted
+     version: "2.2.0"
++  html:
++    dependency: transitive
++    description:
++      name: html
++      sha256: "43b67b8f43321ab066817dfac5619596c98bb1b61624e77203bb4351785f9699"
++      url: "https://pub.dev"
++    source: hosted
++    version: "0.15.7"
+   http:
+     dependency: transitive
+     description:
+@@ -1461,6 +1485,46 @@ packages:
+       url: "https://pub.dev"
+     source: hosted
+     version: "11.0.0"
++  video_player:
++    dependency: transitive
++    description:
++      name: video_player
++      sha256: "07ae1e03f2d4c8e2e9a75ee678f90acbc4506d4458a9c628512d119a1eee5754"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.14.1"
++  video_player_android:
++    dependency: transitive
++    description:
++      name: video_player_android
++      sha256: dbae03b7d74b30f2265f0d0c97849b26d2763811bbe6440b93ccd2281041c03a
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.13.0"
++  video_player_avfoundation:
++    dependency: transitive
++    description:
++      name: video_player_avfoundation
++      sha256: "5af728d811c218fdc100b7e89bcda789fe34d36d53a968912011bc2d7df14b46"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.12.4"
++  video_player_platform_interface:
++    dependency: transitive
++    description:
++      name: video_player_platform_interface
++      sha256: "92c0fbabe20c788e71fd10d26cea998d0d253282e65d145aed0818731cf593ce"
++      url: "https://pub.dev"
++    source: hosted
++    version: "6.9.0"
++  video_player_web:
++    dependency: transitive
++    description:
++      name: video_player_web
++      sha256: "9f3c00be2ef9b76a95d94ac5119fb843dca6f2c69e6c9968f6f2b6c9e7afbdeb"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.4.0"
+   vm_service:
+     dependency: transitive
+     description:
